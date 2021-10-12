@@ -6,7 +6,6 @@ This is a multiple choice quiz application where you can **create** multiple cho
 **complete** them. A list of the application features are below:
 
 - Create multiple choice quizzes consisting of multiple questions
-- Choose if you want the quizzes to be timed or not
 - Complete created quizzes multiple times
 - Track your grades for all attempted quizzes
 
@@ -27,6 +26,5 @@ The user stories so far are:
 
 - As a user, I want to be able to add questions to a quiz
 - As a user, I want to be able to look at a list of all quizzes made
-- As a user, I want to be able to choose between a timed or untimed quiz
 - As a user, I want to be able to attempt and complete a quiz
 - As a user, I want to be able to view a progress report on all attempted quizzes so far
