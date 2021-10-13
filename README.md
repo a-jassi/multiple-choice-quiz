@@ -25,6 +25,6 @@ rather than wasting more time creating the quizzes.
 The user stories so far are:
 
 - As a user, I want to be able to add questions to a quiz
-- As a user, I want to be able to look at a list of all quizzes made
 - As a user, I want to be able to attempt and complete a quiz
+- As a user, I want to be able to look at a list of all quizzes made
 - As a user, I want to be able to view a progress report on all attempted quizzes so far

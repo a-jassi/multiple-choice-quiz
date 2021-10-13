@@ -3,18 +3,17 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// represents a quiz with a name and its questions
 public class Quiz {
 
-    private String name;
+    private String name;                    // name of the quiz
     private List<Question> questions;       // list of questions in the quiz
-    private int grade;                      // grade on a quiz
 
 
     // EFFECTS: creates a new quiz with 0 questions in it
     public Quiz(String name) {
         this.name = name;
         this.questions = new ArrayList<>();
-        this.grade = 0;
     }
 
     // EFFECTS: returns name of quiz
@@ -25,17 +24,6 @@ public class Quiz {
     // EFFECTS: returns questions
     public List<Question> getQuestions() {
         return questions;
-    }
-
-    // EFFECTS: returns grade on quiz
-    public int getGrade() {
-        return grade;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets new value for grade
-    public void setGrade(int newGrade) {
-        grade = newGrade;
     }
 
     // MODIFIES: this
@@ -56,6 +44,12 @@ public class Quiz {
         return questions.size();
     }
 
+    // REQUIRES: i is a question number in the quiz
+    // EFFECTS: returns answer to question i
+    public String getAnswerToQuestion(int i) {
+        return questions.get(i - 1).getCorrectAnswer();
+    }
+
     // EFFECTS: returns string representation of a Quiz
     @Override
     public String toString() {
@@ -69,10 +63,5 @@ public class Quiz {
 
         return returnedString.toString();
     }
-
-
-
-
-
 
 }

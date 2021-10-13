@@ -41,17 +41,6 @@ public class QuizTest {
     }
 
     @Test
-    void testGetGrade() {
-        assertEquals(0, quiz.getGrade());
-    }
-
-    @Test
-    void testGetGradeNotZero() {
-        quiz.setGrade(90);
-        assertEquals(90, quiz.getGrade());
-    }
-
-    @Test
     void testAddQuestionAddOne() {
         List<String> answers = new ArrayList<>();
         answers.add("Vancouver");
@@ -122,6 +111,23 @@ public class QuizTest {
         quiz.addQuestion(question2);
 
         assertEquals(2, quiz.numberOfQuestions());
+    }
+
+    @Test
+    void testGetAnswerToQuestion() {
+        List<String> answers = new ArrayList<>();
+        answers.add("Vancouver");
+        answers.add("Toronto");
+        answers.add("Seattle");
+        answers.add("New York");
+        Question question1 = new Question("Where is UBC?", "Vancouver", answers);
+        Question question2 = new Question("Where is Times Square?", "New York", answers);
+
+        quiz.addQuestion(question1);
+        quiz.addQuestion(question2);
+
+        assertEquals("Vancouver", quiz.getAnswerToQuestion(1));
+        assertEquals("New York", quiz.getAnswerToQuestion(2));
     }
 
     @Test
