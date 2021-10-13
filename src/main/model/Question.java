@@ -18,26 +18,26 @@ public class Question {
 
     // EFFECTS: returns question
     public String getQuestion() {
-        return this.question;
+        return question;
     }
 
     // EFFECTS: returns correctAnswer
     public String getCorrectAnswer() {
-        return this.correctAnswer;
+        return correctAnswer;
     }
 
     // EFFECTS: returns possibleAnswers
     public List<String> getPossibleAnswers() {
-        return this.possibleAnswers;
+        return possibleAnswers;
     }
 
     // EFFECTS: returns string representation of a Question
     @Override
     public String toString() {
-        return this.question + "\n\n" + "a. " + this.getPossibleAnswers().get(0)
-                + "\n" + "b. " + this.getPossibleAnswers().get(1)
-                + "\n" + "c. " + this.getPossibleAnswers().get(2)
-                + "\n" + "d. " + this.getPossibleAnswers().get(3);
+        return this.question + "\n\n" + "a. " + getPossibleAnswers().get(0)
+                + "\n" + "b. " + getPossibleAnswers().get(1)
+                + "\n" + "c. " + getPossibleAnswers().get(2)
+                + "\n" + "d. " + getPossibleAnswers().get(3);
     }
 
 }

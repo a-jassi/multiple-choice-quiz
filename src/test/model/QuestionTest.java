@@ -19,23 +19,23 @@ class QuestionTest {
         answers.add("2");
         answers.add("3");
         answers.add("4");
-        this.question = new Question("What is 1 + 1?", "2", answers);
+        question = new Question("What is 1 + 1?", "2", answers);
     }
 
     @Test
     void testGetQuestion() {
-        assertEquals("What is 1 + 1?", this.question.getQuestion());
+        assertEquals("What is 1 + 1?", question.getQuestion());
     }
 
     @Test
-    void testGetAnswer() {
-        assertEquals("2", this.question.getCorrectAnswer());
+    void testGetCorrectAnswer() {
+        assertEquals("2", question.getCorrectAnswer());
     }
 
     @Test
     void testGetPossibleAnswers() {
-        for (int i = 0; i < this.question.getPossibleAnswers().size(); i++) {
-            List<String> answers = this.question.getPossibleAnswers();
+        for (int i = 0; i < question.getPossibleAnswers().size(); i++) {
+            List<String> answers = question.getPossibleAnswers();
             String answer = answers.get(i);
             String indexInString = (i + 1) + "";
             assertEquals(answer, indexInString);
@@ -44,7 +44,7 @@ class QuestionTest {
 
     @Test
     void testToString() {
-        String returnedString = this.question.toString();
+        String returnedString = question.toString();
         assertEquals("What is 1 + 1?" + "\n\n"
                 + "a. 1" + "\n"
                 + "b. 2" + "\n"
