@@ -107,24 +107,33 @@ public class MultipleChoiceQuizApp {
             System.out.println("What is the question you would like to ask?");
             System.out.println("Type \"done\" if you are done adding questions (must have added at least one))");
             String question = input.nextLine();
-
-            if (question.equalsIgnoreCase("done")) {
-                if (quiz.numberOfQuestions() <= 0) {
-                    System.out.println("You must ask at least one question!\n");
-                    continue;
-                } else {
-                    break;
+            if (!question.isEmpty()) {
+                if (question.equalsIgnoreCase("done")) {
+                    if (quiz.numberOfQuestions() <= 0) {
+                        System.out.println("You must ask at least one question!\n");
+                        continue;
+                    } else {
+                        break;
+                    }
                 }
+            } else {
+                System.out.println("No empty inputs!");
             }
 
             List<String> answers = new ArrayList<>();
-            System.out.println("What is the correct answer?");
-            String answer = input.nextLine();
+            inputCorrectAnswer(answers, quiz, question);
+        }
+    }
+
+    private void inputCorrectAnswer(List<String> answers, Quiz quiz, String question) {
+        System.out.println("What is the correct answer?");
+        String answer = input.nextLine();
+        if (!answer.isEmpty()) {
             answers.add(answer);
-
             inputFakeAnswers(answers);
-
             quiz.addQuestion(new Question(question, answer, answers));
+        } else {
+            System.out.println("No empty inputs!");
         }
     }
 
@@ -134,8 +143,8 @@ public class MultipleChoiceQuizApp {
         while (answers.size() < 4) {
             System.out.println("Give wrong answer " + i);
             String fakeAnswer = input.nextLine();
-            if (answers.contains(fakeAnswer)) {
-                System.out.println("This is already a fake answer, please input a new answer!\n");
+            if (answers.contains(fakeAnswer) || answers.isEmpty()) {
+                System.out.println("Invalid input! No repetition or empty strings!\n");
                 continue;
             }
             answers.add(fakeAnswer);
@@ -159,10 +168,12 @@ public class MultipleChoiceQuizApp {
                 System.out.println(quizToAttempt.getQuiz().stringOfQuestion(i));
                 System.out.println("\nWrite the answer you believe is true (not the letter)");
                 String answer = input.nextLine();
-                if (quizToAttempt.checkAnswer(i, answer)) {
-                    System.out.println("Congratulations! You got it right!\n");
+                if (!answer.isEmpty()) {
+                    if (quizToAttempt.checkAnswer(i, answer)) {
+                        System.out.println("Congratulations! You got it right!\n");
+                    }
                 } else {
-                    System.out.println("Unfortunately, you got it wrong.\n");
+                    System.out.println("Can't input an empty answer!");
                 }
 
             }

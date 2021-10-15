@@ -57,15 +57,6 @@ public class QuizManagerTest {
     }
 
     @Test
-    void testGetAttemptedQuizzes() {
-        assertEquals(0, quizManager.getAttemptedQuizzes().size());
-        AttemptedQuiz attempted = new AttemptedQuiz(quiz);
-        quizManager.addToAttemptedQuizzes(attempted);
-        assertEquals(1, quizManager.getAttemptedQuizzes().size());
-        assertTrue(quizManager.getAttemptedQuizzes().contains(attempted));
-    }
-
-    @Test
     void testAddToAllQuizzesMade() {
         initializeAttemptedQuiz();
 
@@ -73,6 +64,15 @@ public class QuizManagerTest {
         quizManager.addToAllQuizzesMade(quiz);
         assertEquals(2, quizManager.getAllQuizzesMade().size());
         assertEquals(quiz, quizManager.getAllQuizzesMade().get(1));
+    }
+
+    @Test
+    void testGetAttemptedQuizzes() {
+        assertEquals(0, quizManager.getAttemptedQuizzes().size());
+        AttemptedQuiz attempted = new AttemptedQuiz(quiz);
+        quizManager.addToAttemptedQuizzes(attempted);
+        assertEquals(1, quizManager.getAttemptedQuizzes().size());
+        assertTrue(quizManager.getAttemptedQuizzes().contains(attempted));
     }
 
     @Test
@@ -86,15 +86,15 @@ public class QuizManagerTest {
     }
 
     @Test
-    void testGetQuizFromName() {
-        assertEquals(quiz, quizManager.getQuizFromName("My Quiz"));
-    }
-
-    @Test
     void testGetAttemptedQuizFromName() {
         initializeAttemptedQuiz();
         quizManager.addToAttemptedQuizzes(attemptedQuiz);
         assertEquals(attemptedQuiz, quizManager.getAttemptedQuizFromName("Capital City Quiz"));
+    }
+
+    @Test
+    void testGetQuizFromName() {
+        assertEquals(quiz, quizManager.getQuizFromName("My Quiz"));
     }
 
     @Test
