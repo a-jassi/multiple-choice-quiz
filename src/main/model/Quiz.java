@@ -9,7 +9,7 @@ public class Quiz {
     private String name;                    // name of the quiz
     private List<Question> questions;       // list of questions in the quiz
 
-
+    // REQUIRES: name is not an empty String
     // EFFECTS: creates a new quiz with 0 questions in it
     public Quiz(String name) {
         this.name = name;
@@ -32,11 +32,10 @@ public class Quiz {
         questions.add(question);
     }
 
-    // REQUIRES: question is in the list of questions
-    // MODIFIES: this
-    // EFFECTS: removes question from the list of questions
-    public void removeQuestion(Question question) {
-        questions.remove(question);
+    // EFFECTS: returns String representation of question i in quiz
+    public String stringOfQuestion(int i) {
+        Question fetchedQuestion = questions.get(i - 1);
+        return fetchedQuestion.toString();
     }
 
     // EFFECTS: returns the number of questions in a quiz
@@ -44,7 +43,7 @@ public class Quiz {
         return questions.size();
     }
 
-    // REQUIRES: i is a question number in the quiz
+    // REQUIRES: i <= quiz.numberOfQuestions() && i > 0
     // EFFECTS: returns answer to question i
     public String getAnswerToQuestion(int i) {
         return questions.get(i - 1).getCorrectAnswer();

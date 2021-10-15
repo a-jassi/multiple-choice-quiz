@@ -1,9 +1,9 @@
 package model;
 
+import java.util.Collections;
+
 // represents an attempted quiz with the quiz itself, and the grade on it
 public class AttemptedQuiz {
-
-    public static final int POINTS_PER_CORRECT_ANSWER = 1;
 
     private final Quiz quiz;                // quiz that was attempted
     private int grade;                      // grade on quiz
@@ -25,10 +25,31 @@ public class AttemptedQuiz {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds one to grade if answer is correct, nothing otherwise
-    public void checkAnswer(int questionNum, String answer) {
-        if (quiz.getAnswerToQuestion(questionNum).equals(answer)) {
-            grade = grade + POINTS_PER_CORRECT_ANSWER;
+    // EFFECTS: adds one to grade if answer is correct and returns true, nothing otherwise happens and return false
+    public boolean checkAnswer(int questionNum, String answer) {
+        if (questionNum <= quiz.numberOfQuestions() && questionNum > 0) {
+            String answerToQuestion = quiz.getAnswerToQuestion(questionNum);
+            if (answerToQuestion.equals(answer)) {
+                grade++;
+                return true;
+            }
+            return false;
+
+        } else {
+            System.out.println("Invalid Question Number!");
+        }
+
+        return false;
+    }
+
+    // The idea for how to implement shuffleAnswers() comes from the stackoverflow link below:
+    // https://stackoverflow.com/questions/16112515/how-to-shuffle-an-arraylist
+
+    // MODIFIES: this
+    // EFFECTS: shuffles orders of answers in questions
+    public void shuffleAnswers() {
+        for (Question next : quiz.getQuestions()) {
+            Collections.shuffle(next.getPossibleAnswers());
         }
     }
 

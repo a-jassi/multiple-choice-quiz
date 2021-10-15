@@ -11,10 +11,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuizTest {
 
     private Quiz quiz;
+    private Question question1;
+    private Question question2;
 
     @BeforeEach
     void runBefore() {
         quiz = new Quiz("My Quiz");
+    }
+
+    void setUpTwoQuestionsInQuiz() {
+        List<String> answers = new ArrayList<>();
+        answers.add("Vancouver");
+        answers.add("Toronto");
+        answers.add("Seattle");
+        answers.add("New York");
+        question1 = new Question("Where is UBC?", "Vancouver", answers);
+        question2 = new Question("Where is Times Square?", "New York", answers);
+
+        quiz.addQuestion(question1);
+        quiz.addQuestion(question2);
     }
 
     @Test
@@ -24,16 +39,7 @@ public class QuizTest {
 
     @Test
     void testGetQuestions() {
-        List<String> answers = new ArrayList<>();
-        answers.add("Vancouver");
-        answers.add("Toronto");
-        answers.add("Seattle");
-        answers.add("New York");
-        Question question1 = new Question("Where is UBC?", "Vancouver", answers);
-        Question question2 = new Question("Where is Times Square?", "New York", answers);
-
-        quiz.addQuestion(question1);
-        quiz.addQuestion(question2);
+        setUpTwoQuestionsInQuiz();
 
         assertEquals(2, quiz.numberOfQuestions());
         assertEquals(question1, quiz.getQuestions().get(0));
@@ -57,16 +63,7 @@ public class QuizTest {
 
     @Test
     void testAddQuestionAddMultiple() {
-        List<String> answers = new ArrayList<>();
-        answers.add("Vancouver");
-        answers.add("Toronto");
-        answers.add("Seattle");
-        answers.add("New York");
-        Question question1 = new Question("Where is UBC?", "Vancouver", answers);
-        Question question2 = new Question("Where is Times Square?", "New York", answers);
-
-        quiz.addQuestion(question1);
-        quiz.addQuestion(question2);
+        setUpTwoQuestionsInQuiz();
 
         assertEquals(2, quiz.numberOfQuestions());
         assertEquals(question1, quiz.getQuestions().get(0));
@@ -74,23 +71,28 @@ public class QuizTest {
     }
 
     @Test
-    void testRemoveQuestion() {
-        List<String> answers = new ArrayList<>();
-        answers.add("Vancouver");
-        answers.add("Toronto");
-        answers.add("Seattle");
-        answers.add("New York");
-        Question question1 = new Question("Where is UBC?", "Vancouver", answers);
-        Question question2 = new Question("Where is Times Square?", "New York", answers);
-
-        quiz.addQuestion(question1);
-        quiz.addQuestion(question2);
-
-        quiz.removeQuestion(question1);
-
-        assertEquals(1, quiz.numberOfQuestions());
-        assertEquals(question2, quiz.getQuestions().get(0));
+    void testStringOfQuestionQuestionOne() {
+        setUpTwoQuestionsInQuiz();
+        assertEquals("Where is UBC?" + "\n\n"
+                + "a. Vancouver" + "\n"
+                + "b. Toronto" + "\n"
+                + "c. Seattle" + "\n"
+                + "d. New York", quiz.stringOfQuestion(1));
     }
+
+    @Test
+    void testStringOfQuestionQuestionTwo() {
+        setUpTwoQuestionsInQuiz();
+
+        Question testQuestion = quiz.getQuestions().get(1);
+        String returnedString = testQuestion.toString();
+        assertEquals("Where is Times Square?" + "\n\n"
+                + "a. Vancouver" + "\n"
+                + "b. Toronto" + "\n"
+                + "c. Seattle" + "\n"
+                + "d. New York", quiz.stringOfQuestion(2));
+    }
+
 
     @Test
     void testNumberOfQuestionsWhenZero() {
@@ -99,32 +101,14 @@ public class QuizTest {
 
     @Test
     void testNumberOfQuestionsWhenMultiple() {
-        List<String> answers = new ArrayList<>();
-        answers.add("Vancouver");
-        answers.add("Toronto");
-        answers.add("Seattle");
-        answers.add("New York");
-        Question question1 = new Question("Where is UBC?", "Vancouver", answers);
-        Question question2 = new Question("Where is Times Square?", "New York", answers);
-
-        quiz.addQuestion(question1);
-        quiz.addQuestion(question2);
+        setUpTwoQuestionsInQuiz();
 
         assertEquals(2, quiz.numberOfQuestions());
     }
 
     @Test
     void testGetAnswerToQuestion() {
-        List<String> answers = new ArrayList<>();
-        answers.add("Vancouver");
-        answers.add("Toronto");
-        answers.add("Seattle");
-        answers.add("New York");
-        Question question1 = new Question("Where is UBC?", "Vancouver", answers);
-        Question question2 = new Question("Where is Times Square?", "New York", answers);
-
-        quiz.addQuestion(question1);
-        quiz.addQuestion(question2);
+        setUpTwoQuestionsInQuiz();
 
         assertEquals("Vancouver", quiz.getAnswerToQuestion(1));
         assertEquals("New York", quiz.getAnswerToQuestion(2));
@@ -132,16 +116,7 @@ public class QuizTest {
 
     @Test
     void testToString() {
-        List<String> answers = new ArrayList<>();
-        answers.add("Vancouver");
-        answers.add("Toronto");
-        answers.add("Seattle");
-        answers.add("New York");
-        Question question1 = new Question("Where is UBC?", "Vancouver", answers);
-        Question question2 = new Question("Where is Times Square?", "New York", answers);
-
-        quiz.addQuestion(question1);
-        quiz.addQuestion(question2);
+        setUpTwoQuestionsInQuiz();
 
         String expectedOutputString = "Welcome to My Quiz!\n" +
                 "\n" +

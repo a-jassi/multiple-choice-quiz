@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static model.AttemptedQuiz.POINTS_PER_CORRECT_ANSWER;
 import static org.junit.jupiter.api.Assertions.*;
 public class AttemptedQuizTest {
 
@@ -42,14 +41,14 @@ public class AttemptedQuizTest {
     @Test
     void testGetGradeHigherThanZero() {
         attemptedQuiz.checkAnswer(1,"Ottawa");
-        assertEquals(POINTS_PER_CORRECT_ANSWER, attemptedQuiz.getGrade());
+        assertEquals(1, attemptedQuiz.getGrade());
     }
 
     @Test
     void testCheckAnswerRightAnswer() {
         assertEquals(0, attemptedQuiz.getGrade());
         attemptedQuiz.checkAnswer(1,"Ottawa");
-        assertEquals(POINTS_PER_CORRECT_ANSWER, attemptedQuiz.getGrade());
+        assertEquals(1, attemptedQuiz.getGrade());
     }
 
     @Test
@@ -57,6 +56,18 @@ public class AttemptedQuizTest {
         assertEquals(0, attemptedQuiz.getGrade());
         attemptedQuiz.checkAnswer(1,"Vancouver");
         assertEquals(0, attemptedQuiz.getGrade());
+    }
+
+    @Test
+    void testShuffleAnswers() {
+        attemptedQuiz.shuffleAnswers();
+        Question questionForQuiz = quiz.getQuestions().get(0);
+        List<String> possibleAnswers = questionForQuiz.getPossibleAnswers();
+        assertTrue(possibleAnswers.contains("Ottawa"));
+        assertTrue(possibleAnswers.contains("Vancouver"));
+        assertTrue(possibleAnswers.contains("Toronto"));
+        assertTrue(possibleAnswers.contains("Victoria"));
+        assertEquals(4, possibleAnswers.size() );
     }
 
     @Test
@@ -74,6 +85,26 @@ public class AttemptedQuizTest {
     void testCheckIfPassedWhenAttemptedButFailed() {
         attemptedQuiz.checkAnswer(1,"Vancouver");
         assertFalse(attemptedQuiz.checkIfPassed());
+    }
+
+    @Test
+    void testCheckIfPassedFiftyPercent() {
+        List<String> answers = new ArrayList<>();
+        answers.add("Ottawa");
+        answers.add("Vancouver");
+        answers.add("Toronto");
+        answers.add("Victoria");
+
+        Quiz quiz = new Quiz("Capital City Quiz");
+        Question question = new Question("What is the Capital City of Canada?", "Ottawa", answers);
+        quiz.addQuestion(question);
+        Question question2 = new Question("Where is the CN Tower", "Toronto", answers);
+        quiz.addQuestion(question2);
+        attemptedQuiz = new AttemptedQuiz(quiz);
+
+        attemptedQuiz.checkAnswer(1, "Ottawa");
+        attemptedQuiz.checkAnswer(2, "Victoria");
+        assertTrue(attemptedQuiz.checkIfPassed());
     }
 
     @Test
