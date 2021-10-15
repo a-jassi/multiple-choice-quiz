@@ -34,11 +34,7 @@ public class AttemptedQuiz {
                 return true;
             }
             return false;
-
-        } else {
-            System.out.println("Invalid Question Number!");
         }
-
         return false;
     }
 

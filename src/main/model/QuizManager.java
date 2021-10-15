@@ -36,7 +36,6 @@ public class QuizManager {
         attemptedQuizzes.add(attemptedQuiz);
     }
 
-    // REQUIRES: There is a quiz in allQuizzesMade with name
     // EFFECTS: returns quiz with name identical to name parameter
     public Quiz getQuizFromName(String name) {
         for (Quiz next : allQuizzesMade) {
@@ -45,10 +44,9 @@ public class QuizManager {
             }
         }
 
-        return new Quiz("Name not Found");
+        return null;
     }
 
-    // REQUIRES: There is a quiz in attemptedQuizzes with name
     // EFFECTS: returns quiz with name identical to name parameter
     public AttemptedQuiz getAttemptedQuizFromName(String name) {
         for (AttemptedQuiz next : attemptedQuizzes) {
@@ -58,7 +56,7 @@ public class QuizManager {
             }
         }
 
-        return new AttemptedQuiz(new Quiz("Name not Found"));
+        return null;
     }
 
 

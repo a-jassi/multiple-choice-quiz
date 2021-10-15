@@ -45,16 +45,30 @@ public class AttemptedQuizTest {
     }
 
     @Test
-    void testCheckAnswerRightAnswer() {
+    void testCheckAnswerRightAnswerFitsCriteria() {
         assertEquals(0, attemptedQuiz.getGrade());
-        attemptedQuiz.checkAnswer(1,"Ottawa");
+        assertTrue(attemptedQuiz.checkAnswer(1,"Ottawa"));
         assertEquals(1, attemptedQuiz.getGrade());
     }
 
     @Test
-    void testCheckAnswerWrongAnswer() {
+    void testCheckAnswerWrongAnswerFitsCriteria() {
         assertEquals(0, attemptedQuiz.getGrade());
-        attemptedQuiz.checkAnswer(1,"Vancouver");
+        assertFalse(attemptedQuiz.checkAnswer(1,"Vancouver"));
+        assertEquals(0, attemptedQuiz.getGrade());
+    }
+
+    @Test
+    void testCheckAnswerQuestionNumGreaterThanNumberOfQs() {
+        assertEquals(0, attemptedQuiz.getGrade());
+        assertFalse(attemptedQuiz.checkAnswer(10, "Ottawa"));
+        assertEquals(0, attemptedQuiz.getGrade());
+    }
+
+    @Test
+    void testCheckAnswerQuestionNumLessThanZero() {
+        assertEquals(0, attemptedQuiz.getGrade());
+        assertFalse(attemptedQuiz.checkAnswer(-5, "Ottawa"));
         assertEquals(0, attemptedQuiz.getGrade());
     }
 

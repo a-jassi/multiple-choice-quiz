@@ -1,6 +1,5 @@
 package model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -96,6 +95,16 @@ public class QuizManagerTest {
         initializeAttemptedQuiz();
         quizManager.addToAttemptedQuizzes(attemptedQuiz);
         assertEquals(attemptedQuiz, quizManager.getAttemptedQuizFromName("Capital City Quiz"));
+    }
+
+    @Test
+    void testGetQuizFromNameNameNotFound() {
+        assertEquals(null, quizManager.getQuizFromName("Not My Quiz"));
+    }
+
+    @Test
+    void testGetAttemptedQuizFromNameNotFound() {
+        assertEquals(null, quizManager.getAttemptedQuizFromName("Not My Quiz"));
     }
 
     @Test
