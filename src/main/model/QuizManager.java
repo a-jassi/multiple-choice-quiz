@@ -9,6 +9,7 @@ public class QuizManager {
     private List<AttemptedQuiz> attemptedQuizzes;       // all attempted quizzes
     private List<Quiz> allQuizzesMade;                  // all quizzes created
 
+    // EFFECTS: creates a new QuizManager object with empty list of attempted quizzes and made quizzes
     public QuizManager() {
         attemptedQuizzes = new ArrayList<>();
         allQuizzesMade = new ArrayList<>();

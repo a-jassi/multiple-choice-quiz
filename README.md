@@ -28,3 +28,5 @@ The user stories so far are:
 - As a user, I want to be able to attempt and complete a quiz
 - As a user, I want to be able to look at a list of all quizzes made
 - As a user, I want to be able to view a progress report on all attempted quizzes so far
+- As a user, I want to have the option to save all created and attempted quizzes when quitting the application
+- As a user, I want to be able to load all created and attempted quizzes from file
