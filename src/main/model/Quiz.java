@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // represents a quiz with a name and its questions
-public class Quiz {
+public class Quiz implements Writable {
 
     private String name;                    // name of the quiz
     private List<Question> questions;       // list of questions in the quiz
@@ -61,6 +65,32 @@ public class Quiz {
         }
 
         return returnedString.toString();
+    }
+
+    // The code for toJson and questionsListToJson references code from the WorkRoom class in
+    // JsonSerializationDemo project
+    // specifically the toJson() method for toJson() and thingiesToJson for questionsListToJson()
+    // link below:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("name", name);
+        jsonObject.put("questions", questionsListToJson());
+
+        return jsonObject;
+    }
+
+    // EFFECTS: returns questions in the form of a JSONArray
+    private JSONArray questionsListToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Question question : questions) {
+            jsonArray.put(question.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

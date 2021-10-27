@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -133,6 +135,37 @@ public class QuizTest {
 
         assertEquals(expectedOutputString, quiz.toString());
     }
+
+//    @Test
+//    void testToJson() {
+//        setUpTwoQuestionsInQuiz();
+//
+//        JSONObject quizAsJson = quiz.toJson();
+//
+//        assertEquals("My Quiz", quizAsJson.get("name"));
+//
+//        JSONArray questionsAsJson = quizAsJson.getJSONArray("questions");
+//        List<Question> questionsForQuiz = quiz.getQuestions();
+//
+//        for (int i = 0; i < questionsForQuiz.size(); i++) {
+//            assertEquals(questionsAsJson.get(i), questionsForQuiz.get(i));
+//        }
+//    }
+//
+//    @Test
+//    void testQuestionsListToJson() {
+//        setUpTwoQuestionsInQuiz();
+//
+//        JSONObject quizAsJson = quiz.toJson();
+//        JSONArray questionsAsJson = quizAsJson.getJSONArray("questions");
+//        List<Question> questionsForQuiz = quiz.getQuestions();
+//
+//        for (int i = 0; i < questionsForQuiz.size(); i++) {
+//            assertEquals(, questionsForQuiz.get(i));
+//        }
+//
+//
+//    }
 
 
 

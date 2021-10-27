@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,6 +149,28 @@ public class AttemptedQuizTest {
 
 
         assertEquals(expectedOutputString, attemptedQuiz.toString());
+    }
+
+//    @Test
+//    void testToJson() {
+//        JSONObject attemptedQuizJson = attemptedQuiz.toJson();
+//        JSONObject quizAsJson = quiz.toJson();
+//        assertEquals(0, attemptedQuizJson.get("grade"));
+//        assertEquals(quiz.toJson(), attemptedQuizJson.get("quiz"));
+//    }
+//
+//    @Test
+//    void testToJsonGradeIsntOne() {
+//        attemptedQuiz.checkAnswer(1, "Ottawa");
+//        JSONObject attemptedQuizJson = attemptedQuiz.toJson();
+//        assertEquals(1, attemptedQuizJson.get("grade"));
+//        assertEquals(quiz.toJson(), attemptedQuizJson.get("quiz"));
+//    }
+
+    @Test
+    void testSetGrade() {
+        attemptedQuiz.setGrade(1);
+        assertEquals(1, attemptedQuiz.getGrade());
     }
 
 }

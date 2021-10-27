@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Collections;
 
 // represents an attempted quiz with the quiz itself, and the grade on it
-public class AttemptedQuiz {
+public class AttemptedQuiz implements Writable {
 
     private final Quiz quiz;                // quiz that was attempted
     private int grade;                      // grade on quiz
@@ -38,6 +41,12 @@ public class AttemptedQuiz {
         return false;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets grade to newGrade
+    public void setGrade(int newGrade) {
+        this.grade = newGrade;
+    }
+
     // The idea for how to implement shuffleAnswers() comes from the stackoverflow link below:
     // https://stackoverflow.com/questions/16112515/how-to-shuffle-an-arraylist
 
@@ -65,5 +74,19 @@ public class AttemptedQuiz {
         return quiz + "You got " + getGradeAsPercent() + "% on this attempt!";
     }
 
+    // The code for toJson references code from the WorkRoom class in
+    // JsonSerializationDemo project
+    // specifically the toJson() method for toJson()
+    // link below:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("quiz", quiz.toJson());
+        jsonObject.put("grade", grade);
+
+        return jsonObject;
+    }
 }

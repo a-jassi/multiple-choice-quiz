@@ -4,7 +4,12 @@ import model.AttemptedQuiz;
 import model.Question;
 import model.Quiz;
 import model.QuizManager;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,11 +17,14 @@ import java.util.Scanner;
 // Multiple Choice Quiz App
 public class MultipleChoiceQuizApp {
 
+    private static final String JSON_FILE_WRITTEN_TO = "./data/quizManager.json";
     private QuizManager quizManager;        // quizManager
     private Scanner input;                  // scanner to get input from user
+    private JsonWriter jsonWriter;          // saves data to file
+    private JsonReader jsonReader;          // loads data from file
 
     // EFFECTS: runs the multiple choice quiz application
-    public MultipleChoiceQuizApp() {
+    public MultipleChoiceQuizApp() throws FileNotFoundException {
         runMultipleChoiceQuiz();
     }
 
@@ -41,6 +49,7 @@ public class MultipleChoiceQuizApp {
             command = command.toLowerCase();
 
             if (command.equals("quit")) {
+                askForSaveProgress();
                 keepGoing = false;
             } else {
                 processCommand(command);
@@ -53,6 +62,8 @@ public class MultipleChoiceQuizApp {
     // MODIFIES: this
     // EFFECTS: initializes a QuizManager to manage quizzes
     private void initialize() {
+        jsonWriter = new JsonWriter(JSON_FILE_WRITTEN_TO);
+        jsonReader = new JsonReader(JSON_FILE_WRITTEN_TO);
         quizManager = new QuizManager();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -65,6 +76,8 @@ public class MultipleChoiceQuizApp {
         System.out.println("\tattempt   -> attempt a quiz");
         System.out.println("\tview      -> view all created quizzes");
         System.out.println("\tprogress  -> view a progress report of all attempted quizzes");
+        System.out.println("\tsave      -> save your created and attempted quizzes");
+        System.out.println("\tload      -> load previously saved progress");
         System.out.println("\tquit      -> quit the application");
     }
 
@@ -79,6 +92,10 @@ public class MultipleChoiceQuizApp {
             viewQuizzes();
         } else if (command.equals("progress")) {
             viewProgress();
+        } else if (command.equals("save")) {
+            saveProgress();
+        } else if (command.equals("load")) {
+            loadSavedProgress();
         } else {
             System.out.println("Invalid command! Please input a command stated above.\n");
         }
@@ -125,6 +142,8 @@ public class MultipleChoiceQuizApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: asks for correct answer and creates quiz from inputs
     private void inputCorrectAnswer(List<String> answers, Quiz quiz, String question) {
         System.out.println("What is the correct answer?");
         String answer = input.nextLine();
@@ -137,6 +156,8 @@ public class MultipleChoiceQuizApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: asks for wrong answers and adds them to answers
     private void inputFakeAnswers(List<String> answers) {
         int i = 1;
 
@@ -246,6 +267,7 @@ public class MultipleChoiceQuizApp {
         }
     }
 
+    // EFFECTS: returns attempted quiz that is entered
     private AttemptedQuiz accessAttemptedQuiz() {
         System.out.println("Enter the Attempted Quiz you would like a progress report on:");
         String attemptedName = input.nextLine();
@@ -253,6 +275,7 @@ public class MultipleChoiceQuizApp {
 
     }
 
+    // EFFECTS: prints list of all attempted quizzes
     private void printListOfAllAttemptedQuizzes() {
         System.out.println("These are all of the quizzes you have attempted:");
         for (AttemptedQuiz next : quizManager.getAttemptedQuizzes()) {
@@ -260,6 +283,7 @@ public class MultipleChoiceQuizApp {
         }
     }
 
+    // EFFECTS: prints the statistics for all attempted quizzes combined
     private void printOverallStats() {
         System.out.println("Here are your overall statistics:\n\n");
         boolean passedQuizzes = (quizManager.overallAttemptedPercentCorrect()) >= 50;
@@ -267,6 +291,54 @@ public class MultipleChoiceQuizApp {
         System.out.println("Score: " + quizManager.overallAttemptedQuestionsCorrect()
                 + "/" + quizManager.overallPotentialQuestionsCorrect());
         System.out.println("Percentage: " + quizManager.overallAttemptedPercentCorrect() + "%\n");
+    }
+
+    // saveProgress is referenced from the saveProgress() method from the WorkRoomApp class in JsonSerializationDemo
+    // link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
+
+    // MODIFIES: this
+    // EFFECTS: saves the quizManager progress to file
+    private void saveProgress() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(quizManager);
+            jsonWriter.close();
+            System.out.println("QuizManager was successfully saved to " + JSON_FILE_WRITTEN_TO);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_FILE_WRITTEN_TO);
+        }
+    }
+
+    // EFFECTS: asks the user if they want to save data before quitting
+    private void askForSaveProgress() {
+        while (true) {
+            System.out.println("Would you like to save your progress before quitting?");
+            String inputtedAnswer = input.nextLine();
+            if (inputtedAnswer.equalsIgnoreCase("yes")) {
+                saveProgress();
+                break;
+            } else if (inputtedAnswer.equalsIgnoreCase("no")) {
+                System.out.println("Okay, progress will not be saved.");
+                break;
+            } else {
+                System.out.println("Invalid input. Please input \"yes\" or \"no\"");
+            }
+        }
+
+    }
+
+    // loadSavedProgress is templated from the loadWorkRoom() method from WorkRoomApp class in JsonSerializationDemo
+    // link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
+
+    // MODIFIES: this
+    // EFFECTS: loads saved progress from file
+    private void loadSavedProgress() {
+        try {
+            quizManager = jsonReader.read();
+            System.out.println("Successfully loaded saved progress from " + JSON_FILE_WRITTEN_TO);
+        } catch (IOException e) {
+            System.out.println("Unable to read data from file " + JSON_FILE_WRITTEN_TO);
+        }
     }
 
 

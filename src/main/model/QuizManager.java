@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // representation of a manager for the quizzes that are attempted and made.
-public class QuizManager {
+public class QuizManager implements Writable {
 
     private List<AttemptedQuiz> attemptedQuizzes;       // all attempted quizzes
     private List<Quiz> allQuizzesMade;                  // all quizzes created
@@ -87,5 +91,40 @@ public class QuizManager {
         return ((1.0 * overallAttemptedQuestionsCorrect()) / overallPotentialQuestionsCorrect()) * 100;
     }
 
+    // The code for toJson(), attemptedQuizzesListToJson() and allQuizzesMadeListToJson references code
+    // from the WorkRoom class in the JsonSerializationDemo project
+    // specifically the toJson() method for toJson()
+    // and thingiesToJson for attemptedQuizzesListToJson() and allQuizzesMadeListToJson()
+    // link below:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("attemptedQuizzes", attemptedQuizzesListToJson());
+        jsonObject.put("allQuizzesMade", allQuizzesMadeListToJson());
+
+        return jsonObject;
+    }
+
+    // EFFECTS: returns attemptedQuizzes in the form of a JSONArray
+    private JSONArray attemptedQuizzesListToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (AttemptedQuiz next : attemptedQuizzes) {
+            jsonArray.put(next.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns allQuizzesMade in the form of a JSONArray
+    private JSONArray allQuizzesMadeListToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Quiz next : allQuizzesMade) {
+            jsonArray.put(next.toJson());
+        }
+
+        return jsonArray;
+    }
 }

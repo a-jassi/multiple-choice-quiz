@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.List;
 
 // Represents a question with the question itself, the correct answer, and a list of 4 possible answers
-public class Question {
+public class Question implements Writable {
 
     private String question;                    // question itself
     private String correctAnswer;               // correct answer to question
@@ -38,6 +42,33 @@ public class Question {
                 + "\n" + "b. " + getPossibleAnswers().get(1)
                 + "\n" + "c. " + getPossibleAnswers().get(2)
                 + "\n" + "d. " + getPossibleAnswers().get(3);
+    }
+
+    // The code for toJson and possibleAnswersListToJson references code from the WorkRoom class in the
+    // JsonSerializationDemo project
+    // specifically the toJson() method for toJson() and thingiesToJson for possibleAnswersListToJson() below
+    // link below:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("question", question);
+        jsonObject.put("correctAnswer", correctAnswer);
+        jsonObject.put("possibleAnswers", possibleAnswersListToJson());
+
+        return jsonObject;
+    }
+
+    // EFFECTS: returns possibleAnswers in the form of a JSON array
+    public JSONArray possibleAnswersListToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (String answer : possibleAnswers) {
+            jsonArray.put(answer);
+        }
+
+        return jsonArray;
     }
 
 }

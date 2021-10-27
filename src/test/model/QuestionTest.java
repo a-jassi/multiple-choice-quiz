@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -50,5 +52,31 @@ class QuestionTest {
                 + "b. 2" + "\n"
                 + "c. 3" + "\n"
                 + "d. 4", returnedString);
+    }
+
+    @Test
+    void testToJson() {
+        JSONObject questionAsJson = question.toJson();
+
+        assertEquals("What is 1 + 1?", questionAsJson.get("question"));
+        assertEquals("2", questionAsJson.get("correctAnswer"));
+
+        JSONArray answersAsJson = (JSONArray) questionAsJson.get("possibleAnswers");
+        List<String> possibleAnswersForQuestion = question.getPossibleAnswers();
+
+        for (int i = 0; i < possibleAnswersForQuestion.size(); i++) {
+            assertEquals(answersAsJson.get(i), possibleAnswersForQuestion.get(i));
+        }
+    }
+
+    @Test
+    void testPossibleAnswersListToJson() {
+        JSONObject questionAsJson = question.toJson();
+        JSONArray answersAsJson = (JSONArray) questionAsJson.get("possibleAnswers");
+        List<String> possibleAnswersForQuestion = question.getPossibleAnswers();
+
+        for (int i = 0; i < possibleAnswersForQuestion.size(); i++) {
+            assertEquals(answersAsJson.get(i), possibleAnswersForQuestion.get(i));
+        }
     }
 }
