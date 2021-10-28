@@ -1,0 +1,55 @@
+{
+    "attemptedQuizzes": [{
+        "quiz": {
+            "name": "My Quiz",
+            "questions": [
+                {
+                    "question": "Where is UBC?",
+                    "correctAnswer": "Vancouver",
+                    "possibleAnswers": [
+                        "Vancouver",
+                        "Toronto",
+                        "Seattle",
+                        "New York"
+                    ]
+                },
+                {
+                    "question": "Where is Times Square?",
+                    "correctAnswer": "New York",
+                    "possibleAnswers": [
+                        "Vancouver",
+                        "Toronto",
+                        "Seattle",
+                        "New York"
+                    ]
+                }
+            ]
+        },
+        "grade": 1
+    }],
+    "allQuizzesMade": [{
+        "name": "My Quiz",
+        "questions": [
+            {
+                "question": "Where is UBC?",
+                "correctAnswer": "Vancouver",
+                "possibleAnswers": [
+                    "Vancouver",
+                    "Toronto",
+                    "Seattle",
+                    "New York"
+                ]
+            },
+            {
+                "question": "Where is Times Square?",
+                "correctAnswer": "New York",
+                "possibleAnswers": [
+                    "Vancouver",
+                    "Toronto",
+                    "Seattle",
+                    "New York"
+                ]
+            }
+        ]
+    }]
+}

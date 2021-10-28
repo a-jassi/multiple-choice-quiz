@@ -48,11 +48,11 @@ public class JsonReaderTest {
             List<AttemptedQuiz> allAttempted = quizManager.getAttemptedQuizzes();
             List<Quiz> allQuizzes = quizManager.getAllQuizzesMade();
             assertEquals(2, allAttempted.size());
-            assertEquals(2, allQuizzes);
+            assertEquals(2, allQuizzes.size());
             AttemptedQuiz attemptedTwo = allAttempted.get(1);
             AttemptedQuiz attemptedOne = allAttempted.get(0);
             assertEquals(1, attemptedTwo.getGrade());
-            assertEquals((2 / 3), attemptedOne.getGrade());
+            assertEquals( (double) (2 / 3), attemptedOne.getGrade());
         } catch (IOException e) {
             fail("Failed test: File could not be read even though it should have been able to");
         }
