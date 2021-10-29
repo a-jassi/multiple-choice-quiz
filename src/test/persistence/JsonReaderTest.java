@@ -13,6 +13,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class JsonReaderTest {
 
+    // The idea for these 3 specific test cases comes from JsonReaderTest in JsonSerializationDemo
+    // link:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/test/persistence/JsonReaderTest.java
+
     @Test
     void testJsonReaderNoSuchFile() {
         JsonReader reader = new JsonReader("./data.madeUpFile.json");

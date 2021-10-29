@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonWriterTest {
 
-    // testJsonWriterNotValid idea was gotten from JsonWriterTest in JsonSerializationDemo
+    // the idea for these 3 specific test cases was taken from JsonWriterDemo in JsonSerializationDemo
     // link below:
     // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/test/persistence/JsonWriterTest.java
 

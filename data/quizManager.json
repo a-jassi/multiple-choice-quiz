@@ -8,30 +8,20 @@
                         "question": "1+1",
                         "correctAnswer": "2",
                         "possibleAnswers": [
-                            "7",
-                            "2",
                             "8",
-                            "9"
+                            "7",
+                            "6",
+                            "2"
                         ]
                     },
                     {
                         "question": "2+2",
                         "correctAnswer": "4",
                         "possibleAnswers": [
-                            "1",
-                            "2",
-                            "0",
-                            "4"
-                        ]
-                    },
-                    {
-                        "question": "3+3",
-                        "correctAnswer": "6",
-                        "possibleAnswers": [
-                            "5",
+                            "9",
+                            "7",
                             "4",
-                            "6",
-                            "3"
+                            "8"
                         ]
                     }
                 ]
@@ -40,31 +30,31 @@
         },
         {
             "quiz": {
-                "name": "myquiz2",
+                "name": "myquizTwo",
                 "questions": [
                     {
-                        "question": "8*8",
-                        "correctAnswer": "64",
+                        "question": "4*4",
+                        "correctAnswer": "16",
                         "possibleAnswers": [
-                            "64",
-                            "45",
-                            "93",
-                            "72"
+                            "16",
+                            "13",
+                            "14",
+                            "12"
                         ]
                     },
                     {
-                        "question": "5*5",
-                        "correctAnswer": "25",
+                        "question": "6*6",
+                        "correctAnswer": "36",
                         "possibleAnswers": [
-                            "10",
-                            "25",
-                            "15",
-                            "35"
+                            "78",
+                            "36",
+                            "13",
+                            "24"
                         ]
                     }
                 ]
             },
-            "grade": 2
+            "grade": 1
         }
     ],
     "allQuizzesMade": [
@@ -75,55 +65,45 @@
                     "question": "1+1",
                     "correctAnswer": "2",
                     "possibleAnswers": [
-                        "7",
-                        "2",
                         "8",
-                        "9"
+                        "7",
+                        "6",
+                        "2"
                     ]
                 },
                 {
                     "question": "2+2",
                     "correctAnswer": "4",
                     "possibleAnswers": [
-                        "1",
-                        "2",
-                        "0",
-                        "4"
-                    ]
-                },
-                {
-                    "question": "3+3",
-                    "correctAnswer": "6",
-                    "possibleAnswers": [
-                        "5",
+                        "9",
+                        "7",
                         "4",
-                        "6",
-                        "3"
+                        "8"
                     ]
                 }
             ]
         },
         {
-            "name": "myquiz2",
+            "name": "myquizTwo",
             "questions": [
                 {
-                    "question": "8*8",
-                    "correctAnswer": "64",
+                    "question": "4*4",
+                    "correctAnswer": "16",
                     "possibleAnswers": [
-                        "64",
-                        "45",
-                        "93",
-                        "72"
+                        "16",
+                        "13",
+                        "14",
+                        "12"
                     ]
                 },
                 {
-                    "question": "5*5",
-                    "correctAnswer": "25",
+                    "question": "6*6",
+                    "correctAnswer": "36",
                     "possibleAnswers": [
-                        "10",
-                        "25",
-                        "15",
-                        "35"
+                        "78",
+                        "36",
+                        "13",
+                        "24"
                     ]
                 }
             ]

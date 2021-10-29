@@ -2,8 +2,7 @@ package persistence;
 
 
 
-// Most of this JsonReader class references the JsonReader class in the JsonSerializationDemo
-// Methods referenced in JsonReader:
+// Most of this JsonReader class is loosely templated off the JsonReader class in the JsonSerializationDemo
 // link below:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/persistence/JsonReader.java
 
@@ -42,9 +41,9 @@ public class JsonReader {
     }
 
     // readContentsFromFile is directly taken from JsonReader class in JsonSerializationDemo
-    // link is at top of file
+    // link is at top of this class
 
-    // EFFECTS: reads contents of sourceFile and returns it as a string
+    // EFFECTS: reads contents of fileToRead and returns it as a string
     private String readContentsFromFile(String fileToRead) throws IOException {
         StringBuilder fileContent = new StringBuilder();
 
@@ -108,14 +107,13 @@ public class JsonReader {
         return newQuiz;
     }
 
+    // EFFECTS: constructs the written quiz stored in jsonObject and returns it
     private Quiz getQuizFromJsonAllQuizzesMade(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Quiz newQuiz = new Quiz(name);
         addQuestions(newQuiz, jsonObject);
         return newQuiz;
     }
-
-    // Design new methods to extract the quiz instead of attempted quizzes
 
     // MODIFIES: quiz
     // EFFECTS: adds all questions to quiz

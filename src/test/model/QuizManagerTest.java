@@ -93,6 +93,13 @@ public class QuizManagerTest {
     }
 
     @Test
+    void testGetAttemptedQuizFromNameDifferentCase() {
+        initializeAttemptedQuiz();
+        quizManager.addToAttemptedQuizzes(attemptedQuiz);
+        assertEquals(attemptedQuiz, quizManager.getAttemptedQuizFromName("capital city quiz"));
+    }
+
+    @Test
     void testGetQuizFromName() {
         assertEquals(quiz, quizManager.getQuizFromName("My Quiz"));
     }
