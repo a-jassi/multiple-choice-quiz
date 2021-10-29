@@ -41,6 +41,9 @@ public class JsonReader {
         return getQuizManagerFromJson(jsonObject);
     }
 
+    // readContentsFromFile is directly taken from JsonReader class in JsonSerializationDemo
+    // link is at top of file
+
     // EFFECTS: reads contents of sourceFile and returns it as a string
     private String readContentsFromFile(String fileToRead) throws IOException {
         StringBuilder fileContent = new StringBuilder();
@@ -80,8 +83,10 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: quizManager
+    // EFFECTS: adds quiz to quizManager
     private void addQuiz(QuizManager quizManager, JSONObject nextQuiz) {
-        quizManager.addToAllQuizzesMade(getQuizFromJson(nextQuiz));
+        quizManager.addToAllQuizzesMade(getQuizFromJsonAllQuizzesMade(nextQuiz));
     }
 
     // MODIFIES: quizManager
@@ -96,18 +101,27 @@ public class JsonReader {
 
     // EFFECTS: gets Quiz from jsonObject and returns it
     private Quiz getQuizFromJson(JSONObject jsonObject) {
-        JSONObject quizAsJson = (JSONObject) jsonObject.get("quiz");
+        JSONObject quizAsJson = jsonObject.getJSONObject("quiz");
         String name = quizAsJson.getString("name");
+        Quiz newQuiz = new Quiz(name);
+        addQuestions(newQuiz, quizAsJson);
+        return newQuiz;
+    }
+
+    private Quiz getQuizFromJsonAllQuizzesMade(JSONObject jsonObject) {
+        String name = jsonObject.getString("name");
         Quiz newQuiz = new Quiz(name);
         addQuestions(newQuiz, jsonObject);
         return newQuiz;
     }
 
+    // Design new methods to extract the quiz instead of attempted quizzes
+
     // MODIFIES: quiz
     // EFFECTS: adds all questions to quiz
     private void addQuestions(Quiz quiz, JSONObject jsonObject) {
-        JSONObject quizAsJson = jsonObject.getJSONObject("quiz");
-        JSONArray jsonArray = quizAsJson.getJSONArray("questions");
+        // JSONObject quizAsJson = jsonObject.getJSONObject("quiz");
+        JSONArray jsonArray = jsonObject.getJSONArray("questions");
         for (Object next : jsonArray) {
             JSONObject nextAsJson = (JSONObject) next;
             addQuestion(quiz, nextAsJson);

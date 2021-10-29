@@ -52,7 +52,7 @@ public class JsonReaderTest {
             AttemptedQuiz attemptedTwo = allAttempted.get(1);
             AttemptedQuiz attemptedOne = allAttempted.get(0);
             assertEquals(1, attemptedTwo.getGrade());
-            assertEquals( (double) (2 / 3), attemptedOne.getGrade());
+            assertEquals(2.0, attemptedOne.getGrade());
         } catch (IOException e) {
             fail("Failed test: File could not be read even though it should have been able to");
         }
