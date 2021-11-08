@@ -109,6 +109,8 @@ public class QuizManagerTest {
         assertEquals(null, quizManager.getQuizFromName("Not My Quiz"));
     }
 
+    // add case where there are multiple attempted quizzes in list and first is evaluated to false so false case is run;
+
     @Test
     void testGetAttemptedQuizFromNameNotFound() {
         assertEquals(null, quizManager.getAttemptedQuizFromName("Not My Quiz"));
