@@ -5,6 +5,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,12 +25,13 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
     private JsonWriter jsonWriter;              // object that writes to file to save progress
     private JsonReader jsonReader;              // object that reads from file to load progress
     private JPanel panels;
+    private CreateGUI createGUI;
 
     // EFFECTS: creates a MainGraphicUIApp object that is modeled after a JFrame
     public MainGraphicUIApp() {
         super("Multiple Choice Quiz App");
         initWindow();
-        initText();
+        //initText();
         //initButtons();
         initFields();
         pack();
@@ -42,18 +44,21 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(true);
-        initPanels(this.getContentPane());
+        ((JPanel) getContentPane()).setBorder(new EmptyBorder(100, 100, 100, 100));
+        //initPanels(this.getContentPane());
+        createGUI = new CreateGUI(this);
+        add(createGUI, BorderLayout.CENTER);
     }
 
-    // EFFECTS: initializes the welcome text
-    private void initText() {
-        JLabel welcomeText = new JLabel();
-        welcomeText.setText("Welcome to the Multiple Choice Quiz App!");
-        JLabel optionText = new JLabel();
-        optionText.setText("Please pick one of the options from the drop-down box above to get started!");
-        add(welcomeText);
-        add(optionText);
-    }
+//    // EFFECTS: initializes the welcome text
+//    private void initText() {
+//        JLabel welcomeText = new JLabel();
+//        welcomeText.setText("Welcome to the Multiple Choice Quiz App!");
+//        JLabel optionText = new JLabel();
+//        optionText.setText("Please pick one of the options from the drop-down box above to get started!");
+//        add(welcomeText);
+//        add(optionText);
+//    }
 
     // EFFECTS: initializes the fields
     private void initFields() {
@@ -65,22 +70,22 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
     // initPanels references code from the addComponentToPane method from this link below:
     // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/layout/CardLayoutDemoProject/src/layout/CardLayoutDemo.java
 
-    // EFFECTS: initializes the panels for the different options
-    private void initPanels(Container pane) {
-        JPanel comboBoxJPanel = new JPanel();
-        String[] comboBoxItems = comboBoxItems();
-        JComboBox comboBox = new JComboBox(comboBoxItems);
-        comboBox.setEditable(false);
-        comboBox.addItemListener(this);
-        comboBoxJPanel.add(comboBox);
-
-        ArrayList<JPanel> cards = createCards();
-        panels = new JPanel(new CardLayout());
-        addCards(cards);
-
-        pane.add(comboBoxJPanel, BorderLayout.PAGE_START);
-        pane.add(panels, BorderLayout.CENTER);
-    }
+//    // EFFECTS: initializes the panels for the different options
+//    private void initPanels(Container pane) {
+//        JPanel comboBoxJPanel = new JPanel();
+//        String[] comboBoxItems = comboBoxItems();
+//        JComboBox comboBox = new JComboBox(comboBoxItems);
+//        comboBox.setEditable(false);
+//        comboBox.addItemListener(this);
+//        comboBoxJPanel.add(comboBox);
+//
+//        ArrayList<JPanel> cards = createCards();
+//        panels = new JPanel(new CardLayout());
+//        addCards(cards);
+//
+//        pane.add(panels, BorderLayout.CENTER);
+//        pane.add(comboBoxJPanel, BorderLayout.PAGE_START);
+//    }
 
     // EFFECTS: creates the panels for all the options
     private ArrayList<JPanel> createCards() {
@@ -134,6 +139,7 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
         JButton saveButton = new JButton("Save Progress");
         savePanel.add(text);
         savePanel.add(saveButton);
+        saveButton.addItemListener(this);
     }
 
     // the itemStateChanged method is taken from the link below:
@@ -141,6 +147,7 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        System.out.println("h");
         CardLayout cardLayout = (CardLayout) (panels.getLayout());
         cardLayout.show(panels, (String) e.getItem());
     }
