@@ -54,7 +54,7 @@ public class AttemptGUI extends JPanel {
     }
 
     public void chooseQuiz() {
-        if(!inputQuizName.getText().equals("")) {
+        if (!inputQuizName.getText().equals("")) {
             QuizManager quizManager = mainGUI.getQuizManager();
             Quiz quiz = quizManager.getQuizFromName(inputQuizName.getText());
             goIntoQuiz(quiz);
@@ -67,7 +67,6 @@ public class AttemptGUI extends JPanel {
         attemptPanel.setLayout(new BoxLayout(attemptPanel, BoxLayout.Y_AXIS));
 
         quizName = new JLabel("Currently attempting: " + quiz.getName());
-
 
         JLabel question = new JLabel("<html>" + "</html>");
     }

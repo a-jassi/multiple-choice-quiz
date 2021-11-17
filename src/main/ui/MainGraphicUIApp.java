@@ -17,23 +17,24 @@ import java.util.ArrayList;
 // represents the GUI of the MultipleChoiceQuizApp
 public class MainGraphicUIApp extends JFrame implements ActionListener, ItemListener {
 
-    private static final String JSON_FILE_WRITTEN_TO = "./data/quizManager.json";
-    private static final int WIDTH = 700;       // width of panel
-    private static final int HEIGHT = 500;      // height of panel
+    public static final String JSON_FILE_WRITTEN_TO = "./data/quizManager.json";
+    public static final int WIDTH = 700;       // width of panel
+    public static final int HEIGHT = 500;      // height of panel
 
     private QuizManager quizManager;            // quizManager for Multiple Choice Quiz
     private JsonWriter jsonWriter;              // object that writes to file to save progress
     private JsonReader jsonReader;              // object that reads from file to load progress
     private JPanel panels;
     private CreateGUI createGUI;
+    private SaveGUI saveGUI;
 
     // EFFECTS: creates a MainGraphicUIApp object that is modeled after a JFrame
     public MainGraphicUIApp() {
         super("Multiple Choice Quiz App");
+        initFields();
         initWindow();
         //initText();
         //initButtons();
-        initFields();
         pack();
     }
 
@@ -46,13 +47,18 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
         setResizable(true);
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(100, 100, 100, 100));
         //initPanels(this.getContentPane());
-        createGUI = new CreateGUI(this);
-        add(createGUI, BorderLayout.CENTER);
+        saveGUI = new SaveGUI(this);
+        add(saveGUI, BorderLayout.CENTER);
     }
 
     // EFFECTS: returns quizManager
     public QuizManager getQuizManager() {
         return quizManager;
+    }
+
+    // EFFECTS: returns jsonWriter
+    public JsonWriter getJsonWriter() {
+        return jsonWriter;
     }
 
 //    // EFFECTS: initializes the welcome text
