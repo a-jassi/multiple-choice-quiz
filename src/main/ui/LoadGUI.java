@@ -43,7 +43,7 @@ public class LoadGUI extends JPanel {
         setVisible(true);
     }
 
-    public void setUpCloseButton() {
+    private void setUpCloseButton() {
         closeButton = new JButton("Close Load Menu");
         closeButton.setBounds(10, 110, 120, 25);
         closeButton.addActionListener(new ActionListener() {
@@ -54,7 +54,7 @@ public class LoadGUI extends JPanel {
         add(closeButton);
     }
 
-    public void setUpLoad() {
+    private void setUpLoad() {
         loadButton = new JButton("Load");
         loadButton.setBounds(10, 80, 120, 25);
         loadButton.addActionListener(new ActionListener() {
@@ -65,7 +65,7 @@ public class LoadGUI extends JPanel {
         add(loadButton);
     }
 
-    public void loadProgress() {
+    private void loadProgress() {
         try {
             currentManager = jsonReader.read();
             successLoad.setVisible(true);

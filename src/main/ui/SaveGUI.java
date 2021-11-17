@@ -37,7 +37,7 @@ public class SaveGUI extends JPanel {
         setVisible(true);
     }
 
-    public void setUpCloseButton() {
+    private void setUpCloseButton() {
         closeButton = new JButton("Close Save Menu");
         closeButton.setBounds(10, 110, 120, 25);
         closeButton.addActionListener(new ActionListener() {
@@ -48,7 +48,7 @@ public class SaveGUI extends JPanel {
         add(closeButton);
     }
 
-    public void setUpSave() {
+    private void setUpSave() {
         saveButton = new JButton("Save");
         saveButton.setBounds(10, 80, 120, 25);
         saveButton.addActionListener(new ActionListener() {
@@ -59,7 +59,7 @@ public class SaveGUI extends JPanel {
         add(saveButton);
     }
 
-    public void saveProgress() {
+    private void saveProgress() {
         try {
             jsonWriter.open();
             jsonWriter.write(mainGUI.getQuizManager());

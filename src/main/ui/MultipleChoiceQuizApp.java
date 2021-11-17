@@ -324,7 +324,6 @@ public class MultipleChoiceQuizApp {
                 System.out.println("Invalid input. Please input \"yes\" or \"no\"");
             }
         }
-
     }
 
     // loadSavedProgress is templated from the loadWorkRoom() method from WorkRoomApp class in JsonSerializationDemo
@@ -340,6 +339,4 @@ public class MultipleChoiceQuizApp {
             System.out.println("Unable to read data from file " + JSON_FILE_WRITTEN_TO);
         }
     }
-
-
 }

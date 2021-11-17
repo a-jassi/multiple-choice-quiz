@@ -27,7 +27,7 @@ public class AttemptGUI extends JPanel {
         setVisible(true);
     }
 
-    public void setUpLabels() {
+    private void setUpLabels() {
         List<Quiz> quizzes = mainGUI.getQuizManager().getAllQuizzesMade();
         for (Quiz quiz : quizzes) {
             JLabel label = new JLabel(quiz.getName());
@@ -38,12 +38,12 @@ public class AttemptGUI extends JPanel {
         add(text);
     }
 
-    public void setUpTextField() {
+    private void setUpTextField() {
         inputQuizName = new JTextField();
         add(inputQuizName);
     }
 
-    public void setUpEnterButton() {
+    private void setUpEnterButton() {
         enter = new JButton("Enter");
         enter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +53,7 @@ public class AttemptGUI extends JPanel {
         add(enter);
     }
 
-    public void chooseQuiz() {
+    private void chooseQuiz() {
         if (!inputQuizName.getText().equals("")) {
             QuizManager quizManager = mainGUI.getQuizManager();
             Quiz quiz = quizManager.getQuizFromName(inputQuizName.getText());
@@ -62,7 +62,7 @@ public class AttemptGUI extends JPanel {
         }
     }
 
-    public void goIntoQuiz(Quiz quiz) {
+    private void goIntoQuiz(Quiz quiz) {
         JPanel attemptPanel = new JPanel();
         attemptPanel.setLayout(new BoxLayout(attemptPanel, BoxLayout.Y_AXIS));
 

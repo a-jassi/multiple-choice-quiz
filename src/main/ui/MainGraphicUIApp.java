@@ -1,6 +1,5 @@
 package ui;
 
-import model.Quiz;
 import model.QuizManager;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -19,16 +18,15 @@ import java.util.ArrayList;
 public class MainGraphicUIApp extends JFrame implements ActionListener, ItemListener {
 
     public static final String JSON_FILE_WRITTEN_TO = "./data/quizManager.json";
-    public static final int WIDTH = 1200;       // width of panel
-    public static final int HEIGHT = 1000;      // height of panel
+    public static final int WIDTH = 700;       // width of panel
+    public static final int HEIGHT = 500;      // height of panel
 
     private QuizManager quizManager;            // quizManager for Multiple Choice Quiz
     private JsonWriter jsonWriter;              // object that writes to file to save progress
     private JsonReader jsonReader;              // object that reads from file to load progress
-    private JPanel panels;
-    private CreateGUI createGUI;
-    private SaveGUI saveGUI;
-    private LoadGUI loadGUI;
+    private JPanel currentPanel;
+
+    // have one JPanel pointing to current panel and discard others, don't have visibility
 
     // EFFECTS: creates a MainGraphicUIApp object that is modeled after a JFrame
     public MainGraphicUIApp() {
@@ -49,8 +47,8 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
         setResizable(true);
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(50, 50, 50, 50));
         //initPanels(this.getContentPane());
-        loadGUI = new LoadGUI(this);
-        add(loadGUI, BorderLayout.CENTER);
+        currentPanel = new WelcomeGUI(this);
+        add(currentPanel, BorderLayout.CENTER);
     }
 
     // EFFECTS: returns quizManager
@@ -144,12 +142,12 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
 
     // EFFECTS: adds cards to this
     private void addCards(ArrayList<JPanel> panels) {
-        this.panels.add(panels.get(0), "Create");
-        this.panels.add(panels.get(1), "Attempt");
-        this.panels.add(panels.get(2), "View");
-        this.panels.add(panels.get(3), "Progress");
-        this.panels.add(panels.get(4), "Save");
-        this.panels.add(panels.get(5), "Load");
+        this.currentPanel.add(panels.get(0), "Create");
+        this.currentPanel.add(panels.get(1), "Attempt");
+        this.currentPanel.add(panels.get(2), "View");
+        this.currentPanel.add(panels.get(3), "Progress");
+        this.currentPanel.add(panels.get(4), "Save");
+        this.currentPanel.add(panels.get(5), "Load");
     }
 
     // EFFECTS: returns array for different start menu options
@@ -172,8 +170,8 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
     @Override
     public void itemStateChanged(ItemEvent e) {
         System.out.println("h");
-        CardLayout cardLayout = (CardLayout) (panels.getLayout());
-        cardLayout.show(panels, (String) e.getItem());
+        CardLayout cardLayout = (CardLayout) (currentPanel.getLayout());
+        cardLayout.show(currentPanel, (String) e.getItem());
     }
 
     @Override
@@ -194,6 +192,16 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_FILE_WRITTEN_TO);
         }
+    }
+
+    // setCurrentPanel references code from the link below:
+    // https://stackoverflow.com/questions/218155/how-do-i-change-jpanel-inside-a-jframe-on-the-fly
+
+    public void setCurrentPanel(JPanel panel) {
+        getContentPane().removeAll();
+        getContentPane().add(panel);
+        pack();
+        repaint();
     }
 
     // EFFECTS: runs the GUI of MultipleChoiceQuiz
