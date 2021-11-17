@@ -24,7 +24,7 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
     private QuizManager quizManager;            // quizManager for Multiple Choice Quiz
     private JsonWriter jsonWriter;              // object that writes to file to save progress
     private JsonReader jsonReader;              // object that reads from file to load progress
-    private JPanel currentPanel;
+    private JPanel currentPanel;                // current panel being shown
 
     // have one JPanel pointing to current panel and discard others, don't have visibility
 
@@ -200,6 +200,13 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
     public void setCurrentPanel(JPanel panel) {
         getContentPane().removeAll();
         getContentPane().add(panel);
+        pack();
+        repaint();
+    }
+
+    public void resetToWelcome() {
+        getContentPane().removeAll();
+        getContentPane().add(new WelcomeGUI(this));
         pack();
         repaint();
     }

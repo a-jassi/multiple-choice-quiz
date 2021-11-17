@@ -185,7 +185,7 @@ public class CreateGUI extends JPanel {
         doneButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mainGUI.getQuizManager().addToAllQuizzesMade(createdQuiz);
-                setCreateVisibility(false);
+                mainGUI.resetToWelcome();
             }
         });
         add(doneButton);

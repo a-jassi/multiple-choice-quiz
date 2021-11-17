@@ -42,7 +42,7 @@ public class SaveGUI extends JPanel {
         closeButton.setBounds(10, 110, 120, 25);
         closeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                mainGUI.resetToWelcome();
             }
         });
         add(closeButton);
