@@ -13,8 +13,6 @@ import java.util.List;
 // represents the gui for the create section of the multiple choice quiz app
 public class CreateGUI extends JPanel {
 
-    private static final int WIDTH = 700;
-    private static final int HEIGHT = 500;
     private MainGraphicUIApp mainGUI;
     private JTextField quizNameField;
     private JTextField questionField;
@@ -27,11 +25,15 @@ public class CreateGUI extends JPanel {
     private JButton addQuestionButton;
     private Quiz createdQuiz;
 
-    // creates a new createGUI panel
+    // EFFECTS: creates a new createGUI panel
     public CreateGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setUpPanel();
+    }
 
+    // EFFECTS: sets up createGUI panel with all buttons and text fields
+    public void setUpPanel() {
         addQuizLabel();
         addEmptySpace();
         addQuestionLabel();
@@ -181,6 +183,7 @@ public class CreateGUI extends JPanel {
         doneButton.setBounds(50, 210, 80, 25);
         doneButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                mainGUI.getQuizManager().addToAllQuizzesMade(createdQuiz);
                 setCreateVisibility(false);
             }
         });
@@ -198,4 +201,5 @@ public class CreateGUI extends JPanel {
         falseTwo.setText("");
         falseThree.setText("");
     }
+
 }

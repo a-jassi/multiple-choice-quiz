@@ -50,6 +50,11 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
         add(createGUI, BorderLayout.CENTER);
     }
 
+    // EFFECTS: returns quizManager
+    public QuizManager getQuizManager() {
+        return quizManager;
+    }
+
 //    // EFFECTS: initializes the welcome text
 //    private void initText() {
 //        JLabel welcomeText = new JLabel();
