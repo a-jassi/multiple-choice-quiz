@@ -1,5 +1,6 @@
 package ui;
 
+import model.Quiz;
 import model.QuizManager;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 public class MainGraphicUIApp extends JFrame implements ActionListener, ItemListener {
 
     public static final String JSON_FILE_WRITTEN_TO = "./data/quizManager.json";
-    public static final int WIDTH = 700;       // width of panel
-    public static final int HEIGHT = 500;      // height of panel
+    public static final int WIDTH = 1200;       // width of panel
+    public static final int HEIGHT = 1000;      // height of panel
 
     private QuizManager quizManager;            // quizManager for Multiple Choice Quiz
     private JsonWriter jsonWriter;              // object that writes to file to save progress
@@ -27,6 +28,7 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
     private JPanel panels;
     private CreateGUI createGUI;
     private SaveGUI saveGUI;
+    private LoadGUI loadGUI;
 
     // EFFECTS: creates a MainGraphicUIApp object that is modeled after a JFrame
     public MainGraphicUIApp() {
@@ -45,10 +47,10 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(true);
-        ((JPanel) getContentPane()).setBorder(new EmptyBorder(100, 100, 100, 100));
+        ((JPanel) getContentPane()).setBorder(new EmptyBorder(50, 50, 50, 50));
         //initPanels(this.getContentPane());
-        saveGUI = new SaveGUI(this);
-        add(saveGUI, BorderLayout.CENTER);
+        loadGUI = new LoadGUI(this);
+        add(loadGUI, BorderLayout.CENTER);
     }
 
     // EFFECTS: returns quizManager
@@ -59,6 +61,17 @@ public class MainGraphicUIApp extends JFrame implements ActionListener, ItemList
     // EFFECTS: returns jsonWriter
     public JsonWriter getJsonWriter() {
         return jsonWriter;
+    }
+
+    // EFFECTS: returns jsonReader
+    public JsonReader getJsonReader() {
+        return jsonReader;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets new quizManager
+    public void setQuizManager(QuizManager quizManager) {
+        this.quizManager = quizManager;
     }
 
 //    // EFFECTS: initializes the welcome text
