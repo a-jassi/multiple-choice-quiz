@@ -22,8 +22,10 @@ public class CreateGUI extends JPanel {
     private JTextField falseOne;
     private JTextField falseTwo;
     private JTextField falseThree;
-    private JButton createQuestionButton;
+    private JButton createQuizButton;
     private JButton doneButton;
+    private JButton addQuestionButton;
+    private Quiz createdQuiz;
 
     // creates a new createGUI panel
     public CreateGUI(MainGraphicUIApp mainGUI) {
@@ -38,7 +40,7 @@ public class CreateGUI extends JPanel {
         addEmptySpace();
         addWrongAnswersLabels();
         addEmptySpace();
-        addCreateQuestionButton();
+        addCreateQuizButton();
         addEmptySpace();
         addDoneButton();
     }
@@ -114,33 +116,53 @@ public class CreateGUI extends JPanel {
         setVisible(bool);
     }
 
-    // EFFECTS: creates a create question button and adds it to the panel
-    public void addCreateQuestionButton() {
-        createQuestionButton = new JButton("Create Question");
-        createQuestionButton.setBounds(50, 210, 80, 25);
-        createQuestionButton.addActionListener(new ActionListener() {
+    // EFFECTS: creates a create quiz button and adds it to the panel
+    public void addCreateQuizButton() {
+        createQuizButton = new JButton("Create Quiz");
+        createQuizButton.setBounds(50, 210, 80, 25);
+        createQuizButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!hasEmptyString()) {
                     quizNameField.setEditable(false);
                     String quizName = quizNameField.getText();
-                    String questionName = questionField.getText();
-                    String correctAnswer = answerField.getText();
-                    List<String> answers = new ArrayList<>();
-                    answers.add(correctAnswer);
-                    answers.add(falseOne.getText());
-                    answers.add(falseTwo.getText());
-                    answers.add(falseThree.getText());
-
-                    Quiz createdQuiz = new Quiz(quizName);
-                    Question createdQuestion = new Question(questionName, correctAnswer, answers);
-                    createdQuiz.addQuestion(createdQuestion);
-
+                    createdQuiz = new Quiz(quizName);
+                    addQuestionToQuiz(createdQuiz);
                     clearTextFields();
-
+                    remove(createQuizButton);
+                    addCreateQuestionButton();
+                    repaint();
                 }
             }
         });
-        add(createQuestionButton);
+        add(createQuizButton);
+    }
+
+    public void addCreateQuestionButton() {
+        addQuestionButton = new JButton("Add Question");
+        addQuestionButton.setBounds(25, 330, 120, 25);
+        addQuestionButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!hasEmptyString()) {
+                    addQuestionToQuiz(createdQuiz);
+                    clearTextFields();
+                }
+            }
+        });
+        add(addQuestionButton);
+    }
+
+    // MODIFIES: quiz
+    // EFFECTS: combines the text fields and creates a new question and adds it to quiz
+    public void addQuestionToQuiz(Quiz quiz) {
+        String questionName = questionField.getText();
+        String correctAnswer = answerField.getText();
+        List<String> answers = new ArrayList<>();
+        answers.add(correctAnswer);
+        answers.add(falseOne.getText());
+        answers.add(falseTwo.getText());
+        answers.add(falseThree.getText());
+        Question createdQuestion = new Question(questionName, correctAnswer, answers);
+        quiz.addQuestion(createdQuestion);
     }
 
     // EFFECTS: returns true if any of the text fields are empty, false otherwise
@@ -157,6 +179,11 @@ public class CreateGUI extends JPanel {
     public void addDoneButton() {
         doneButton = new JButton("Done");
         doneButton.setBounds(50, 210, 80, 25);
+        doneButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setCreateVisibility(false);
+            }
+        });
         add(doneButton);
     }
 
@@ -171,15 +198,4 @@ public class CreateGUI extends JPanel {
         falseTwo.setText("");
         falseThree.setText("");
     }
-
-
-
-
-
-
-
-
-
-
-
 }
