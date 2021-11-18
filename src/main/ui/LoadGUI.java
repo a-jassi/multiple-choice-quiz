@@ -20,12 +20,10 @@ public class LoadGUI extends JPanel {
     private JButton closeButton;
     private JLabel successLoad;
     private JLabel failLoad;
-    private QuizManager currentManager;
 
     public LoadGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         jsonReader = mainGUI.getJsonReader();
-        currentManager = mainGUI.getQuizManager();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setSize(1200, 1000);
 
@@ -67,7 +65,7 @@ public class LoadGUI extends JPanel {
 
     private void loadProgress() {
         try {
-            currentManager = jsonReader.read();
+            mainGUI.setQuizManager(jsonReader.read());
             successLoad.setVisible(true);
         } catch (IOException e) {
             failLoad.setVisible(true);

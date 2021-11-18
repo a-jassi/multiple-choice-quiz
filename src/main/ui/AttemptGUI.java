@@ -36,7 +36,7 @@ public class AttemptGUI extends JPanel {
             add(label);
         }
 
-        JLabel text = new JLabel("Input the quiz to attempt:");
+        JLabel text = new JLabel("<html><br><br>Input the quiz to attempt:</html>");
         add(text);
     }
 
@@ -79,16 +79,24 @@ public class AttemptGUI extends JPanel {
         JLabel question = new JLabel(questionWorkedOn.toStringAsHtml());
         attemptPanel.add(question);
 
+        JTextField inputTextField = new JTextField();
+        attemptPanel.add(inputTextField);
+
         JButton submitAnswer = new JButton("Submit Answer");
         submitAnswer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (getQuestionFromIndex(quizFromAttempted, index + 1) == null) {
-                    displayProgressPanel(attemptedQuiz);
-                } else {
-                    goIntoQuiz(attemptedQuiz, index + 1);
+                if (!inputTextField.getText().equals("")) {
+                    attemptedQuiz.checkAnswer(index, inputTextField.getText());
                 }
+                try {
+                    goIntoQuiz(attemptedQuiz, index + 1);
+                } catch (IndexOutOfBoundsException exception) {
+                    displayProgressPanel(attemptedQuiz);
+                }
+                // TODO: fix bug with incorrect progress report; maybe create separate method that listens for submit button
             }
         });
+        attemptPanel.add(submitAnswer);
         attemptPanel.setVisible(true);
         mainGUI.setCurrentPanel(attemptPanel);
     }
@@ -97,7 +105,7 @@ public class AttemptGUI extends JPanel {
         JPanel progressPanel = new JPanel();
         progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
 
-        JLabel progressLabel = new JLabel("<html>Here is how you did on"
+        JLabel progressLabel = new JLabel("<html>Here is how you did on "
                 + attemptedQuiz.getQuiz().getName() + "<br><br></html>");
 
         progressPanel.add(progressLabel);
@@ -107,7 +115,20 @@ public class AttemptGUI extends JPanel {
         int attemptedQuizSize = attemptedQuiz.getQuiz().getQuestions().size();
         JLabel scoreLabel = new JLabel("Score: " + attemptedQuiz.getGrade() + "/" + attemptedQuizSize);
         progressPanel.add(scoreLabel);
-        // TODO: percentage label + ok button to return to menu
+        JLabel percentageLabel = new JLabel("Percentage: " + attemptedQuiz.getGradeAsPercent() + "%");
+        progressPanel.add(passedLabel);
+        progressPanel.add(scoreLabel);
+        progressPanel.add(percentageLabel);
+
+        JButton doneButton = new JButton("Done");
+        doneButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainGUI.resetToWelcome();
+            }
+        });
+        progressPanel.add(doneButton);
+        progressPanel.setVisible(true);
+        mainGUI.setCurrentPanel(progressPanel);
     }
 
     public Question getQuestionFromIndex(Quiz quiz, int index) {

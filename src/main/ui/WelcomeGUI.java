@@ -51,7 +51,7 @@ public class WelcomeGUI extends JPanel {
         attemptButton.setBounds(mainGUI.WIDTH / 2, 50, 80, 25);
         attemptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (!(mainGUI.getQuizManager().getAttemptedQuizzes().size() == 0)) {
+                if (!(mainGUI.getQuizManager().getAllQuizzesMade().size() == 0)) {
                     mainGUI.setCurrentPanel(new AttemptGUI(mainGUI));
                 }
             }

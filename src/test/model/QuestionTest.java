@@ -61,7 +61,7 @@ class QuestionTest {
                 + "a. 1<br>"
                 + "b. 2<br>"
                 + "c. 3<br>"
-                + "d. 4</html>", returnedString);
+                + "d. 4<br><br></html>", returnedString);
     }
 
     @Test

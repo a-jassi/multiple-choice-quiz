@@ -50,7 +50,7 @@ public class Question implements Writable {
                 + "<br>" + "b. " + getPossibleAnswers().get(1)
                 + "<br>" + "c. " + getPossibleAnswers().get(2)
                 + "<br>" + "d. " + getPossibleAnswers().get(3)
-                + "</html>";
+                + "<br><br></html>";
     }
 
     // The code for toJson and possibleAnswersListToJson references code from the WorkRoom class in the
