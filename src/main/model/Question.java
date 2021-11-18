@@ -44,6 +44,15 @@ public class Question implements Writable {
                 + "\n" + "d. " + getPossibleAnswers().get(3);
     }
 
+    // EFFECTS: returns string with html tags
+    public String toStringAsHtml() {
+        return "<html>" + this.question + "<br><br>" + "a. " + getPossibleAnswers().get(0)
+                + "<br>" + "b. " + getPossibleAnswers().get(1)
+                + "<br>" + "c. " + getPossibleAnswers().get(2)
+                + "<br>" + "d. " + getPossibleAnswers().get(3)
+                + "</html>";
+    }
+
     // The code for toJson and possibleAnswersListToJson references code from the WorkRoom class in the
     // JsonSerializationDemo project
     // specifically the toJson() method for toJson() and thingiesToJson for possibleAnswersListToJson() below

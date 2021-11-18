@@ -51,7 +51,9 @@ public class WelcomeGUI extends JPanel {
         attemptButton.setBounds(mainGUI.WIDTH / 2, 50, 80, 25);
         attemptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainGUI.setCurrentPanel(new AttemptGUI(mainGUI));
+                if (!(mainGUI.getQuizManager().getAttemptedQuizzes().size() == 0)) {
+                    mainGUI.setCurrentPanel(new AttemptGUI(mainGUI));
+                }
             }
         });
         add(attemptButton);
@@ -62,7 +64,9 @@ public class WelcomeGUI extends JPanel {
         viewButton.setBounds(mainGUI.WIDTH / 2, 80, 80, 25);
         viewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainGUI.setCurrentPanel(new ViewGUI(mainGUI));
+                if (!(mainGUI.getQuizManager().getAllQuizzesMade().size() == 0)) {
+                    mainGUI.setCurrentPanel(new ViewGUI(mainGUI));
+                }
             }
         });
         add(viewButton);
@@ -73,7 +77,9 @@ public class WelcomeGUI extends JPanel {
         progressButton.setBounds(mainGUI.WIDTH / 2, 110, 80, 25);
         progressButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainGUI.setCurrentPanel(new ProgressGUI(mainGUI));
+                if (!(mainGUI.getQuizManager().getAttemptedQuizzes().size() == 0)) {
+                    mainGUI.setCurrentPanel(new ProgressGUI(mainGUI));
+                }
             }
         });
         add(progressButton);

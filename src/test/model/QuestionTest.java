@@ -55,6 +55,16 @@ class QuestionTest {
     }
 
     @Test
+    void testToStringAsHtml() {
+        String returnedString = question.toStringAsHtml();
+        assertEquals("<html>What is 1 + 1?<br><br>"
+                + "a. 1<br>"
+                + "b. 2<br>"
+                + "c. 3<br>"
+                + "d. 4</html>", returnedString);
+    }
+
+    @Test
     void testToJson() {
         JSONObject questionAsJson = question.toJson();
 

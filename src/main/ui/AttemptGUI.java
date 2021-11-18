@@ -1,5 +1,7 @@
 package ui;
 
+import model.AttemptedQuiz;
+import model.Question;
 import model.Quiz;
 import model.QuizManager;
 
@@ -57,18 +59,59 @@ public class AttemptGUI extends JPanel {
         if (!inputQuizName.getText().equals("")) {
             QuizManager quizManager = mainGUI.getQuizManager();
             Quiz quiz = quizManager.getQuizFromName(inputQuizName.getText());
-            goIntoQuiz(quiz);
+            AttemptedQuiz attemptedQuiz = new AttemptedQuiz(quiz);
+            quizManager.addToAttemptedQuizzes(attemptedQuiz);
+            goIntoQuiz(attemptedQuiz, 0);
             setVisible(false);
         }
     }
 
-    private void goIntoQuiz(Quiz quiz) {
+    private void goIntoQuiz(AttemptedQuiz attemptedQuiz, int index) {
         JPanel attemptPanel = new JPanel();
         attemptPanel.setLayout(new BoxLayout(attemptPanel, BoxLayout.Y_AXIS));
 
-        quizName = new JLabel("Currently attempting: " + quiz.getName());
+        Quiz quizFromAttempted = attemptedQuiz.getQuiz();
+        quizName = new JLabel("<html>Currently attempting: " + quizFromAttempted.getName() + "<br><br></html>");
+        attemptPanel.add(quizName);
 
-        JLabel question = new JLabel("<html>" + "</html>");
+        Question questionWorkedOn = getQuestionFromIndex(quizFromAttempted, index);
+
+        JLabel question = new JLabel(questionWorkedOn.toStringAsHtml());
+        attemptPanel.add(question);
+
+        JButton submitAnswer = new JButton("Submit Answer");
+        submitAnswer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (getQuestionFromIndex(quizFromAttempted, index + 1) == null) {
+                    displayProgressPanel(attemptedQuiz);
+                } else {
+                    goIntoQuiz(attemptedQuiz, index + 1);
+                }
+            }
+        });
+        attemptPanel.setVisible(true);
+        mainGUI.setCurrentPanel(attemptPanel);
+    }
+
+    private void displayProgressPanel(AttemptedQuiz attemptedQuiz) {
+        JPanel progressPanel = new JPanel();
+        progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
+
+        JLabel progressLabel = new JLabel("<html>Here is how you did on"
+                + attemptedQuiz.getQuiz().getName() + "<br><br></html>");
+
+        progressPanel.add(progressLabel);
+
+        JLabel passedLabel = new JLabel("Passed: " + attemptedQuiz.checkIfPassed());
+        progressPanel.add(passedLabel);
+        int attemptedQuizSize = attemptedQuiz.getQuiz().getQuestions().size();
+        JLabel scoreLabel = new JLabel("Score: " + attemptedQuiz.getGrade() + "/" + attemptedQuizSize);
+        progressPanel.add(scoreLabel);
+        // TODO: percentage label + ok button to return to menu
+    }
+
+    public Question getQuestionFromIndex(Quiz quiz, int index) {
+        return quiz.getQuestions().get(index);
     }
 
 }
