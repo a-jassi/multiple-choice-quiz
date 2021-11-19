@@ -15,15 +15,13 @@ import java.io.FileNotFoundException;
 public class MainGraphicUIApp extends JFrame {
 
     public static final String JSON_FILE_WRITTEN_TO = "./data/quizManager.json";
-    public static final int WIDTH = 700;       // width of panel
-    public static final int HEIGHT = 500;      // height of panel
+    public static final int WIDTH = 700;       // width of frame
+    public static final int HEIGHT = 500;      // height of frame
 
     private QuizManager quizManager;            // quizManager for Multiple Choice Quiz
     private JsonWriter jsonWriter;              // object that writes to file to save progress
     private JsonReader jsonReader;              // object that reads from file to load progress
     private JPanel currentPanel;                // current panel being shown
-
-    // have one JPanel pointing to current panel and discard others, don't have visibility
 
     // EFFECTS: creates a MainGraphicUIApp object that is modeled after a JFrame
     public MainGraphicUIApp() {
@@ -33,7 +31,8 @@ public class MainGraphicUIApp extends JFrame {
         pack();
     }
 
-    // EFFECTS: initialize the window with a CardLayout
+    // MODIFIES: this
+    // EFFECTS: initialize the frame
     private void initWindow() {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setUpSavePopUp();
@@ -70,6 +69,8 @@ public class MainGraphicUIApp extends JFrame {
     // the code for the save pop-up window was taken from the link below:
     // https://stackoverflow.com/questions/15449022/show-prompt-before-closing-jframe
 
+    // MODIFIES: this
+    // EFFECTS: creates an option pane that pops up when closing; asks to save progress
     private void setUpSavePopUp() {
         addWindowListener(new WindowAdapter() {
             @Override
@@ -87,18 +88,12 @@ public class MainGraphicUIApp extends JFrame {
         });
     }
 
-    // EFFECTS: initializes the fields
+    // EFFECTS: initializes the fields that don't have to do with the frame
     private void initFields() {
         jsonWriter = new JsonWriter(JSON_FILE_WRITTEN_TO);
         jsonReader = new JsonReader(JSON_FILE_WRITTEN_TO);
         quizManager = new QuizManager();
     }
-
-    // initPanels references code from the addComponentToPane method from this link below:
-    // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/layout/CardLayoutDemoProject/src/layout/CardLayoutDemo.java
-
-    // the itemStateChanged method is taken from the link below:
-    // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/layout/CardLayoutDemoProject/src/layout/CardLayoutDemo.java
 
     // MODIFIES: this
     // EFFECTS: saves the quizManager progress to file
@@ -115,6 +110,8 @@ public class MainGraphicUIApp extends JFrame {
     // setCurrentPanel references code from the link below:
     // https://stackoverflow.com/questions/218155/how-do-i-change-jpanel-inside-a-jframe-on-the-fly
 
+    // MODIFIES: this
+    // EFFECTS: replaces current panel with panel parameter
     public void setCurrentPanel(JPanel panel) {
         getContentPane().removeAll();
         getContentPane().add(panel);
@@ -122,6 +119,8 @@ public class MainGraphicUIApp extends JFrame {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: replaces the current panel with a welcomeUI panel
     public void resetToWelcome() {
         getContentPane().removeAll();
         getContentPane().add(new WelcomeGUI(this));
