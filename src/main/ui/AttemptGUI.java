@@ -6,26 +6,33 @@ import model.Quiz;
 import model.QuizManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 // represents the GUI for attempting quizzes
-public class AttemptGUI extends JPanel {
+public class AttemptGUI extends JPanel implements ActionListener {
 
     private MainGraphicUIApp mainGUI;
     private JTextField inputQuizName;
     private JButton enter;
     private JLabel quizName;
 
+    private JTextField inputTextField;
+    private AttemptedQuiz attemptedQuiz;
+    private int index;
+
     public AttemptGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        index = 0;
 
         setUpLabels();
         setUpTextField();
         setUpEnterButton();
         chooseQuiz();
+        add(Box.createRigidArea(new Dimension(20, 50)));
         setVisible(true);
     }
 
@@ -61,7 +68,8 @@ public class AttemptGUI extends JPanel {
             Quiz quiz = quizManager.getQuizFromName(inputQuizName.getText());
             AttemptedQuiz attemptedQuiz = new AttemptedQuiz(quiz);
             quizManager.addToAttemptedQuizzes(attemptedQuiz);
-            goIntoQuiz(attemptedQuiz, 0);
+            this.attemptedQuiz = attemptedQuiz;
+            goIntoQuiz(attemptedQuiz, index);
             setVisible(false);
         }
     }
@@ -79,24 +87,13 @@ public class AttemptGUI extends JPanel {
         JLabel question = new JLabel(questionWorkedOn.toStringAsHtml());
         attemptPanel.add(question);
 
-        JTextField inputTextField = new JTextField();
+        inputTextField = new JTextField();
         attemptPanel.add(inputTextField);
 
         JButton submitAnswer = new JButton("Submit Answer");
-        submitAnswer.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (!inputTextField.getText().equals("")) {
-                    attemptedQuiz.checkAnswer(index, inputTextField.getText());
-                }
-                try {
-                    goIntoQuiz(attemptedQuiz, index + 1);
-                } catch (IndexOutOfBoundsException exception) {
-                    displayProgressPanel(attemptedQuiz);
-                }
-                // TODO: fix bug with incorrect progress report; maybe create separate method that listens for submit button
-            }
-        });
+        submitAnswer.addActionListener(this);
         attemptPanel.add(submitAnswer);
+        attemptPanel.add(Box.createRigidArea(new Dimension(50, 50)));
         attemptPanel.setVisible(true);
         mainGUI.setCurrentPanel(attemptPanel);
     }
@@ -135,4 +132,16 @@ public class AttemptGUI extends JPanel {
         return quiz.getQuestions().get(index);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (!inputTextField.getText().equals("")) {
+            this.attemptedQuiz.checkAnswer(index + 1, inputTextField.getText());
+        }
+        try {
+            index++;
+            goIntoQuiz(attemptedQuiz, index);
+        } catch (IndexOutOfBoundsException exception) {
+            displayProgressPanel(attemptedQuiz);
+        }
+    }
 }

@@ -1,16 +1,88 @@
 {
-    "attemptedQuizzes": [],
-    "allQuizzesMade": [{
-        "name": "test",
-        "questions": [{
-            "question": "test90",
-            "correctAnswer": "new quiz",
-            "possibleAnswers": [
-                "new quiz",
-                "2",
-                "3",
-                "4"
+    "attemptedQuizzes": [
+        {
+            "quiz": {
+                "name": "test1",
+                "questions": [{
+                    "question": "3+9",
+                    "correctAnswer": "12",
+                    "possibleAnswers": [
+                        "12",
+                        "1",
+                        "2",
+                        "3"
+                    ]
+                }]
+            },
+            "grade": 1
+        },
+        {
+            "quiz": {
+                "name": "test2",
+                "questions": [
+                    {
+                        "question": "1+1",
+                        "correctAnswer": "2",
+                        "possibleAnswers": [
+                            "2",
+                            "8",
+                            "9",
+                            "0"
+                        ]
+                    },
+                    {
+                        "question": "5+1",
+                        "correctAnswer": "6",
+                        "possibleAnswers": [
+                            "6",
+                            "1",
+                            "2",
+                            "3"
+                        ]
+                    }
+                ]
+            },
+            "grade": 1
+        }
+    ],
+    "allQuizzesMade": [
+        {
+            "name": "test2",
+            "questions": [
+                {
+                    "question": "1+1",
+                    "correctAnswer": "2",
+                    "possibleAnswers": [
+                        "2",
+                        "8",
+                        "9",
+                        "0"
+                    ]
+                },
+                {
+                    "question": "5+1",
+                    "correctAnswer": "6",
+                    "possibleAnswers": [
+                        "6",
+                        "1",
+                        "2",
+                        "3"
+                    ]
+                }
             ]
-        }]
-    }]
+        },
+        {
+            "name": "test1",
+            "questions": [{
+                "question": "3+9",
+                "correctAnswer": "12",
+                "possibleAnswers": [
+                    "12",
+                    "1",
+                    "2",
+                    "3"
+                ]
+            }]
+        }
+    ]
 }

@@ -76,9 +76,9 @@ public class MainGraphicUIApp extends JFrame {
             public void windowClosing(WindowEvent we) {
                 String[] objButtons = {"Yes","No"};
                 int promptResult = JOptionPane.showOptionDialog(null,
-                        "Do you want to save before exiting?","Multiple Choice Quiz App",
-                        JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,
-                        null,objButtons,objButtons[1]);
+                        "Do you want to save before exiting?", "Multiple Choice Quiz App",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                        null, objButtons, objButtons[1]);
                 if (promptResult == JOptionPane.YES_OPTION) {
                     saveProgress();
                 }

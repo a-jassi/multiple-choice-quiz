@@ -20,12 +20,17 @@ public class LoadGUI extends JPanel {
     private JButton closeButton;
     private JLabel successLoad;
     private JLabel failLoad;
+    private JLabel information;
 
     public LoadGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         jsonReader = mainGUI.getJsonReader();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setSize(1200, 1000);
+
+        information = new JLabel("<html>Please click \"Load\" to load the file"
+                + "<br>Please click the \"Close Load Menu\" below to return to the main screen</html>");
+        add(information);
 
         successLoad = new JLabel("QuizManager successfully loaded from " + JSON_FILE_WRITTEN_TO);
         successLoad.setBounds(10, 20, 150, 25);
@@ -38,6 +43,7 @@ public class LoadGUI extends JPanel {
 
         setUpCloseButton();
         setUpLoad();
+        add(Box.createRigidArea(new Dimension(0, 50)));
         setVisible(true);
     }
 

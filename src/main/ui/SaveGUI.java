@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
-import static java.awt.Label.CENTER;
 import static ui.MainGraphicUIApp.JSON_FILE_WRITTEN_TO;
 
 public class SaveGUI extends JPanel {
@@ -27,7 +26,7 @@ public class SaveGUI extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         information = new JLabel("<html>Please click \"Save\" to save the file"
-                + "<br>Please click \"Close Menu Button\" to return to the main screen</html>");
+                + "<br>Please click the \"Close Save Menu\" below to return to the main screen</html>");
         add(information);
 
         successSave = new JLabel("QuizManager was successfully saved to " + JSON_FILE_WRITTEN_TO);
@@ -41,7 +40,7 @@ public class SaveGUI extends JPanel {
 
         setUpCloseButton();
         setUpSave();
-        add(Box.createRigidArea(new Dimension(0, 300)));
+        add(Box.createRigidArea(new Dimension(0, 50)));
         setVisible(true);
     }
 
