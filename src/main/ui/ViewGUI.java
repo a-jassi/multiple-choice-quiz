@@ -5,6 +5,7 @@ import model.Quiz;
 import model.QuizManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -26,6 +27,10 @@ public class ViewGUI extends JPanel {
     }
 
     private void setUpLabels() {
+        JLabel info = new JLabel("Here is a list of all quizzes:");
+        add(info);
+        add(Box.createRigidArea(new Dimension(0, 50)));
+
         List<Quiz> quizzes = mainGUI.getQuizManager().getAllQuizzesMade();
         for (Quiz quiz : quizzes) {
             JLabel label = new JLabel(quiz.getName());

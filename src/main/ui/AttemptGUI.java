@@ -37,6 +37,10 @@ public class AttemptGUI extends JPanel implements ActionListener {
     }
 
     private void setUpLabels() {
+        JLabel info = new JLabel("Here is a list of all quizzes:");
+        add(info);
+        add(Box.createRigidArea(new Dimension(0, 50)));
+
         List<Quiz> quizzes = mainGUI.getQuizManager().getAllQuizzesMade();
         for (Quiz quiz : quizzes) {
             JLabel label = new JLabel(quiz.getName());
@@ -69,6 +73,7 @@ public class AttemptGUI extends JPanel implements ActionListener {
             AttemptedQuiz attemptedQuiz = new AttemptedQuiz(quiz);
             quizManager.addToAttemptedQuizzes(attemptedQuiz);
             this.attemptedQuiz = attemptedQuiz;
+            attemptedQuiz.shuffleAnswers();
             goIntoQuiz(attemptedQuiz, index);
             setVisible(false);
         }
