@@ -99,6 +99,78 @@
                 ]
             },
             "grade": 2
+        },
+        {
+            "quiz": {
+                "name": "test2",
+                "questions": [
+                    {
+                        "question": "1+1",
+                        "correctAnswer": "2",
+                        "possibleAnswers": [
+                            "2",
+                            "9",
+                            "8",
+                            "0"
+                        ]
+                    },
+                    {
+                        "question": "5+1",
+                        "correctAnswer": "6",
+                        "possibleAnswers": [
+                            "1",
+                            "3",
+                            "2",
+                            "6"
+                        ]
+                    }
+                ]
+            },
+            "grade": 1
+        },
+        {
+            "quiz": {
+                "name": "test",
+                "questions": [{
+                    "question": "0+0",
+                    "correctAnswer": "0",
+                    "possibleAnswers": [
+                        "1",
+                        "4",
+                        "0",
+                        "6"
+                    ]
+                }]
+            },
+            "grade": 1
+        },
+        {
+            "quiz": {
+                "name": "hello",
+                "questions": [
+                    {
+                        "question": "0+2",
+                        "correctAnswer": "2",
+                        "possibleAnswers": [
+                            "7",
+                            "2",
+                            "9",
+                            "5"
+                        ]
+                    },
+                    {
+                        "question": "6+1",
+                        "correctAnswer": "7",
+                        "possibleAnswers": [
+                            "2",
+                            "1",
+                            "7",
+                            "3"
+                        ]
+                    }
+                ]
+            },
+            "grade": 1
         }
     ],
     "allQuizzesMade": [
@@ -110,8 +182,8 @@
                     "correctAnswer": "2",
                     "possibleAnswers": [
                         "2",
-                        "8",
                         "9",
+                        "8",
                         "0"
                     ]
                 },
@@ -119,10 +191,10 @@
                     "question": "5+1",
                     "correctAnswer": "6",
                     "possibleAnswers": [
-                        "6",
                         "1",
+                        "3",
                         "2",
-                        "3"
+                        "6"
                     ]
                 }
             ]
@@ -161,6 +233,44 @@
                         "3",
                         "2",
                         "1"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "questions": [{
+                "question": "0+0",
+                "correctAnswer": "0",
+                "possibleAnswers": [
+                    "1",
+                    "4",
+                    "0",
+                    "6"
+                ]
+            }]
+        },
+        {
+            "name": "hello",
+            "questions": [
+                {
+                    "question": "0+2",
+                    "correctAnswer": "2",
+                    "possibleAnswers": [
+                        "7",
+                        "2",
+                        "9",
+                        "5"
+                    ]
+                },
+                {
+                    "question": "6+1",
+                    "correctAnswer": "7",
+                    "possibleAnswers": [
+                        "2",
+                        "1",
+                        "7",
+                        "3"
                     ]
                 }
             ]

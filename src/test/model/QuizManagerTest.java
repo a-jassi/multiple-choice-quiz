@@ -99,6 +99,27 @@ public class QuizManagerTest {
         assertEquals(attemptedQuiz, quizManager.getAttemptedQuizFromName("capital city quiz"));
     }
 
+
+    // add case where there are multiple attempted quizzes in list and first is evaluated to false so false case is run;
+    @Test
+    void testGetAttemptedQuizFromNameSecondElement() {
+        initializeAttemptedQuiz();
+        List<String> answers = new ArrayList<>();
+        answers.add("Ottawa");
+        answers.add("Vancouver");
+        answers.add("Florida");
+        answers.add("Victoria");
+
+        Quiz quiz = new Quiz("Geography Quiz");
+        Question question = new Question("Which City Isn't in Canada?", "Florida", answers);
+        quiz.addQuestion(question);
+
+        AttemptedQuiz attemptedTwo = new AttemptedQuiz(quiz);
+        quizManager.addToAttemptedQuizzes(attemptedQuiz);
+        quizManager.addToAttemptedQuizzes(attemptedTwo);
+        assertEquals(attemptedTwo, quizManager.getAttemptedQuizFromName("Geography Quiz"));
+    }
+
     @Test
     void testGetQuizFromName() {
         assertEquals(quiz, quizManager.getQuizFromName("My Quiz"));
@@ -108,8 +129,6 @@ public class QuizManagerTest {
     void testGetQuizFromNameNameNotFound() {
         assertEquals(null, quizManager.getQuizFromName("Not My Quiz"));
     }
-
-    // add case where there are multiple attempted quizzes in list and first is evaluated to false so false case is run;
 
     @Test
     void testGetAttemptedQuizFromNameNotFound() {
