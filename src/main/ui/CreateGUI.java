@@ -13,19 +13,19 @@ import java.util.List;
 // represents the gui for the create section of the multiple choice quiz app
 public class CreateGUI extends JPanel {
 
-    private MainGraphicUIApp mainGUI;
-    private JTextField quizNameField;
-    private JTextField questionField;
-    private JTextField answerField;
-    private JTextField falseOne;
-    private JTextField falseTwo;
-    private JTextField falseThree;
-    private JButton createQuizButton;
-    private JButton doneButton;
-    private JButton addQuestionButton;
-    private Quiz createdQuiz;
+    private MainGraphicUIApp mainGUI;       // JFrame that displays all the panels
+    private JTextField quizNameField;       // field for inputting quiz name
+    private JTextField questionField;       // field for inputting question name
+    private JTextField answerField;         // field for inputting correct answer to question
+    private JTextField falseOne;            // field for first false answer
+    private JTextField falseTwo;            // field for second false answer
+    private JTextField falseThree;          // field for third false answer
+    private JButton createQuizButton;       // button that creates the quiz
+    private JButton doneButton;             // button that stops quiz creation and returns you to menu
+    private JButton addQuestionButton;      // button that adds question to quiz
+    private Quiz createdQuiz;               // quiz created from createGUI
 
-    // EFFECTS: creates a new createGUI panel
+    // EFFECTS: creates a new createGUI panel for functionality related to creating a quiz
     public CreateGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -48,6 +48,7 @@ public class CreateGUI extends JPanel {
         addDoneButton();
     }
 
+    // MODIFIES: this
     // EFFECTS: adds label and text field for quiz name
     private void addQuizLabel() {
         JLabel quizNameText = new JLabel("Enter the Quiz Name:");
@@ -59,6 +60,7 @@ public class CreateGUI extends JPanel {
         add(quizNameField);
     }
 
+    // MODIFIES: this
     // EFFECTS: adds the label and text field for the question
     private void addQuestionLabel() {
         JLabel questionText = new JLabel("Enter the Question:");
@@ -70,6 +72,7 @@ public class CreateGUI extends JPanel {
         add(questionField);
     }
 
+    // MODIFIES: this
     // EFFECTS: adds label and text field for correct answer
     private void addCorrectAnswerLabel() {
         JLabel answerText = new JLabel("Enter the Correct Answer:");
@@ -81,6 +84,7 @@ public class CreateGUI extends JPanel {
         add(answerField);
     }
 
+    // MODIFIES: this
     // EFFECTS: adds labels and text fields for wrong answers
     private void addWrongAnswersLabels() {
         JLabel falseAnswerOne = new JLabel("Enter One Wrong Answer:");
@@ -108,7 +112,7 @@ public class CreateGUI extends JPanel {
         add(falseThree);
     }
 
-    // EFFECTS: adds empty space to createGUI panel
+    // EFFECTS: adds empty space to createGUI panel acting as a divider
     private void addEmptySpace() {
         add(Box.createRigidArea(new Dimension(0, 20)));
     }
@@ -119,6 +123,7 @@ public class CreateGUI extends JPanel {
         setVisible(bool);
     }
 
+    // MODIFIES: this
     // EFFECTS: creates a create quiz button and adds it to the panel
     private void addCreateQuizButton() {
         createQuizButton = new JButton("Create Quiz");
@@ -140,6 +145,8 @@ public class CreateGUI extends JPanel {
         add(createQuizButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates an add question button and adds it to the createGUI panel
     private void addCreateQuestionButton() {
         addQuestionButton = new JButton("Add Question");
         addQuestionButton.setBounds(25, 330, 120, 25);
@@ -178,6 +185,7 @@ public class CreateGUI extends JPanel {
                 || falseThree.getText().equals("");
     }
 
+    // MODIFIES: this
     // EFFECTS: creates a done button and adds it to the panel
     private void addDoneButton() {
         doneButton = new JButton("Done");
@@ -194,6 +202,7 @@ public class CreateGUI extends JPanel {
     // the code from the clearTextFields method references code from the link below:
     // https://stackoverflow.com/questions/24473427/clear-textfield-using-button-java
 
+    // MODIFIES: this
     // EFFECTS: clears the text fields to empty fields
     private void clearTextFields() {
         questionField.setText("");
