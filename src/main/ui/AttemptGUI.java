@@ -31,7 +31,7 @@ public class AttemptGUI extends JPanel implements ActionListener {
         setUpLabels();
         setUpTextField();
         setUpEnterButton();
-        chooseQuiz();
+        // chooseQuiz();
         add(Box.createRigidArea(new Dimension(20, 50)));
         setVisible(true);
     }
@@ -108,10 +108,8 @@ public class AttemptGUI extends JPanel implements ActionListener {
         progressPanel.add(progressLabel);
 
         JLabel passedLabel = new JLabel("Passed: " + attemptedQuiz.checkIfPassed());
-        progressPanel.add(passedLabel);
         int attemptedQuizSize = attemptedQuiz.getQuiz().getQuestions().size();
         JLabel scoreLabel = new JLabel("Score: " + attemptedQuiz.getGrade() + "/" + attemptedQuizSize);
-        progressPanel.add(scoreLabel);
         JLabel percentageLabel = new JLabel("Percentage: " + attemptedQuiz.getGradeAsPercent() + "%");
         progressPanel.add(passedLabel);
         progressPanel.add(scoreLabel);
