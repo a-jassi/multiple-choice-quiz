@@ -1,91 +1,16 @@
 {
     "attemptedQuizzes": [],
-    "allQuizzesMade": [
-        {
-            "name": "test1",
-            "questions": [
-                {
-                    "question": "2+2",
-                    "correctAnswer": "4",
-                    "possibleAnswers": [
-                        "4",
-                        "7",
-                        "8",
-                        "9"
-                    ]
-                },
-                {
-                    "question": "what is 3+3?",
-                    "correctAnswer": "6",
-                    "possibleAnswers": [
-                        "6",
-                        "1",
-                        "2",
-                        "3"
-                    ]
-                }
+    "allQuizzesMade": [{
+        "name": "test",
+        "questions": [{
+            "question": "test90",
+            "correctAnswer": "new quiz",
+            "possibleAnswers": [
+                "new quiz",
+                "2",
+                "3",
+                "4"
             ]
-        },
-        {
-            "name": "test2",
-            "questions": [{
-                "question": "8+8",
-                "correctAnswer": "16",
-                "possibleAnswers": [
-                    "16",
-                    "10",
-                    "13",
-                    "15"
-                ]
-            }]
-        },
-        {
-            "name": "test3",
-            "questions": [
-                {
-                    "question": "1+1",
-                    "correctAnswer": "2",
-                    "possibleAnswers": [
-                        "2",
-                        "4",
-                        "5",
-                        "6"
-                    ]
-                },
-                {
-                    "question": "9+9",
-                    "correctAnswer": "18",
-                    "possibleAnswers": [
-                        "18",
-                        "12",
-                        "13",
-                        "14"
-                    ]
-                },
-                {
-                    "question": "10+10",
-                    "correctAnswer": "20",
-                    "possibleAnswers": [
-                        "20",
-                        "2",
-                        "23",
-                        "24"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "test4",
-            "questions": [{
-                "question": "7+7",
-                "correctAnswer": "14",
-                "possibleAnswers": [
-                    "14",
-                    "12",
-                    "11",
-                    "13"
-                ]
-            }]
-        }
-    ]
+        }]
+    }]
 }

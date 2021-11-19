@@ -3,15 +3,18 @@ package ui;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+import static java.awt.Label.CENTER;
 import static ui.MainGraphicUIApp.JSON_FILE_WRITTEN_TO;
 
 public class SaveGUI extends JPanel {
 
     private MainGraphicUIApp mainGUI;
+    private JLabel information;
     private JButton saveButton;
     private JButton closeButton;
     private JsonWriter jsonWriter;
@@ -22,6 +25,10 @@ public class SaveGUI extends JPanel {
         this.mainGUI = mainGUI;
         jsonWriter = mainGUI.getJsonWriter();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        information = new JLabel("<html>Please click \"Save\" to save the file"
+                + "<br>Please click \"Close Menu Button\" to return to the main screen</html>");
+        add(information);
 
         successSave = new JLabel("QuizManager was successfully saved to " + JSON_FILE_WRITTEN_TO);
         successSave.setBounds(10, 20, 120, 25);
@@ -34,6 +41,7 @@ public class SaveGUI extends JPanel {
 
         setUpCloseButton();
         setUpSave();
+        add(Box.createRigidArea(new Dimension(0, 300)));
         setVisible(true);
     }
 

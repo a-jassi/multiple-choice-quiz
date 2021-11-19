@@ -22,6 +22,7 @@ public class WelcomeGUI extends JPanel {
         setUpButtons();
         setAlignmentX(WIDTH / 2);
         setVisible(true);
+
     }
 
     private void setUpButtons() {
@@ -37,7 +38,7 @@ public class WelcomeGUI extends JPanel {
 
     private void setUpCreate() {
         createButton = new JButton("Create");
-        createButton.setBounds(mainGUI.WIDTH / 2, 20, 80, 25);
+        createButton.setBounds(MainGraphicUIApp.WIDTH / 2, 20, 80, 25);
         createButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mainGUI.setCurrentPanel(new CreateGUI(mainGUI));
@@ -48,7 +49,7 @@ public class WelcomeGUI extends JPanel {
 
     private void setUpAttemptButton() {
         attemptButton = new JButton("Attempt");
-        attemptButton.setBounds(mainGUI.WIDTH / 2, 50, 80, 25);
+        attemptButton.setBounds(MainGraphicUIApp.WIDTH / 2, 50, 80, 25);
         attemptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!(mainGUI.getQuizManager().getAllQuizzesMade().size() == 0)) {
@@ -61,7 +62,7 @@ public class WelcomeGUI extends JPanel {
 
     private void setUpViewButton() {
         viewButton = new JButton("View");
-        viewButton.setBounds(mainGUI.WIDTH / 2, 80, 80, 25);
+        viewButton.setBounds(MainGraphicUIApp.WIDTH / 2, 80, 80, 25);
         viewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!(mainGUI.getQuizManager().getAllQuizzesMade().size() == 0)) {
@@ -74,7 +75,7 @@ public class WelcomeGUI extends JPanel {
 
     private void setUpProgressButton() {
         progressButton = new JButton("Progress");
-        progressButton.setBounds(mainGUI.WIDTH / 2, 110, 80, 25);
+        progressButton.setBounds(MainGraphicUIApp.WIDTH / 2, 110, 80, 25);
         progressButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!(mainGUI.getQuizManager().getAttemptedQuizzes().size() == 0)) {
@@ -87,7 +88,7 @@ public class WelcomeGUI extends JPanel {
 
     private void setUpSaveButton() {
         saveButton = new JButton("Save");
-        saveButton.setBounds(mainGUI.WIDTH / 2, 140, 80, 25);
+        saveButton.setBounds(MainGraphicUIApp.WIDTH / 2, 140, 80, 25);
         saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mainGUI.setCurrentPanel(new SaveGUI(mainGUI));
@@ -98,7 +99,7 @@ public class WelcomeGUI extends JPanel {
 
     private void setUpLoadButton() {
         loadButton = new JButton("Load");
-        loadButton.setBounds(mainGUI.WIDTH / 2, 170, 80, 25);
+        loadButton.setBounds(MainGraphicUIApp.WIDTH / 2, 170, 80, 25);
         loadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mainGUI.setCurrentPanel(new LoadGUI(mainGUI));
