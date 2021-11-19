@@ -28,6 +28,7 @@ public class SaveGUI extends JPanel {
         information = new JLabel("<html>Please click \"Save\" to save the file"
                 + "<br>Please click the \"Close Save Menu\" below to return to the main screen</html>");
         add(information);
+        add(Box.createRigidArea(new Dimension(0, 25)));
 
         successSave = new JLabel("QuizManager was successfully saved to " + JSON_FILE_WRITTEN_TO);
         successSave.setBounds(10, 20, 120, 25);
@@ -38,10 +39,12 @@ public class SaveGUI extends JPanel {
         successSave.setVisible(false);
         failedToSave.setVisible(false);
 
-        setUpCloseButton();
         setUpSave();
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        setUpCloseButton();
         add(Box.createRigidArea(new Dimension(0, 50)));
         setVisible(true);
+
     }
 
     private void setUpCloseButton() {

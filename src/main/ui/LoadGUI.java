@@ -31,6 +31,7 @@ public class LoadGUI extends JPanel {
         information = new JLabel("<html>Please click \"Load\" to load the file"
                 + "<br>Please click the \"Close Load Menu\" below to return to the main screen</html>");
         add(information);
+        add(Box.createRigidArea(new Dimension(0, 25)));
 
         successLoad = new JLabel("QuizManager successfully loaded from " + JSON_FILE_WRITTEN_TO);
         successLoad.setBounds(10, 20, 150, 25);
@@ -41,8 +42,9 @@ public class LoadGUI extends JPanel {
         successLoad.setVisible(false);
         failLoad.setVisible(false);
 
-        setUpCloseButton();
         setUpLoad();
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        setUpCloseButton();
         add(Box.createRigidArea(new Dimension(0, 50)));
         setVisible(true);
     }

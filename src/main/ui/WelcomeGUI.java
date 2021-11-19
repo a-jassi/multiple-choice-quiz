@@ -20,12 +20,13 @@ public class WelcomeGUI extends JPanel {
         this.mainGUI = mainGUI;
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setUpButtons();
-        setAlignmentX(WIDTH / 2);
         setVisible(true);
 
     }
 
     private void setUpButtons() {
+        setUpIcon();
+        setUpGap();
         setUpWelcomeText();
         setUpGap();
         setUpCreate();
@@ -34,6 +35,22 @@ public class WelcomeGUI extends JPanel {
         setUpProgressButton();
         setUpSaveButton();
         setUpLoadButton();
+    }
+
+    // setUpIcon references code from the link below: (answer with 109 up-votes)
+    // https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
+
+    // link for image used: https://www.clipartmax.com/middle/m2i8A0G6G6m2N4m2_multiple-choice-icon-graphic-design/
+
+    private void setUpIcon() {
+        ImageIcon image = new ImageIcon("./data/mcqImage2.jpeg");
+        Image imageAsImage = image.getImage();
+        Image newImage = imageAsImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        image = new ImageIcon(newImage);
+        JLabel label = new JLabel();
+        label.setText("Multiple Choice Quiz App");
+        label.setIcon(image);
+        add(label);
     }
 
     private void setUpCreate() {
