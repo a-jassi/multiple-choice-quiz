@@ -11,12 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+// represents the GUI for seeing progress on attempted quizzes
 public class ProgressGUI extends JPanel {
 
-    private MainGraphicUIApp mainGUI;
-    private QuizManager quizManager;
-    private JTextField inputQuizName;
+    private MainGraphicUIApp mainGUI;           // main JFrame that displays the panels
+    private QuizManager quizManager;            // quizManager containing all Quizzes/AttemptedQuizzes
+    private JTextField inputQuizName;           // text field to enter name of attempted quiz you want to view
 
+    // creates a panel that has functionality related to the stats of an attempted quiz
     public ProgressGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         quizManager = mainGUI.getQuizManager();
@@ -26,6 +28,7 @@ public class ProgressGUI extends JPanel {
         mainGUI.setCurrentPanel(this);
     }
 
+    // EFFECTS: creates labels and buttons on panel asking for individual or overall stats
     private void setUpIndividualOrOverall() {
         JLabel info = new JLabel("Would you like to view Individual or Overall statistics?");
         add(info);
@@ -47,6 +50,7 @@ public class ProgressGUI extends JPanel {
         add(overall);
     }
 
+    // EFFECTS: creates new panel for overall stats and displays it
     private void setUpOverallPanel() {
         JPanel overallPanel = new JPanel();
         overallPanel.setLayout(new BoxLayout(overallPanel, BoxLayout.Y_AXIS));
@@ -76,6 +80,7 @@ public class ProgressGUI extends JPanel {
         mainGUI.setCurrentPanel(overallPanel);
     }
 
+    // EFFECTS: creates new panel for selecting which attempted quiz to view
     private void setUpIndividualPanel() {
         JPanel individualChoosePanel = new JPanel();
         individualChoosePanel.setLayout(new BoxLayout(individualChoosePanel, BoxLayout.Y_AXIS));
@@ -87,6 +92,7 @@ public class ProgressGUI extends JPanel {
         mainGUI.setCurrentPanel(individualChoosePanel);
     }
 
+    // EFFECTS: sets up labels on individual attempted quiz choosing panel
     private void setUpLabels(JPanel panel) {
         JLabel info = new JLabel("Here is a list of all attempted quizzes:");
         panel.add(info);
@@ -102,11 +108,14 @@ public class ProgressGUI extends JPanel {
         panel.add(input);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up text field that gets the attempted quiz the user wants to view
     private void setUpTextField(JPanel panel) {
         inputQuizName = new JTextField();
         panel.add(inputQuizName);
     }
 
+    // EFFECTS: sets up the button to submit the name for the attempted quiz user wants to view
     private void setUpEnterButton(JPanel panel) {
         JButton enter = new JButton("Enter");
         enter.addActionListener(new ActionListener() {
@@ -120,6 +129,7 @@ public class ProgressGUI extends JPanel {
         panel.add(enter);
     }
 
+    // EFFECTS: creates new panel that shows the individual stats for the quiz selected by user earlier and displays it
     private void showPanelWithIndividualStats() {
         JPanel individualPanel = new JPanel();
         individualPanel.setLayout(new BoxLayout(individualPanel, BoxLayout.Y_AXIS));
