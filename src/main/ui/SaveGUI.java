@@ -10,16 +10,18 @@ import java.io.FileNotFoundException;
 
 import static ui.MainGraphicUIApp.JSON_FILE_WRITTEN_TO;
 
+// represents the GUI for saving progress to file
 public class SaveGUI extends JPanel {
 
-    private MainGraphicUIApp mainGUI;
-    private JLabel information;
-    private JButton saveButton;
-    private JButton closeButton;
-    private JsonWriter jsonWriter;
-    private JLabel successSave;
-    private JLabel failedToSave;
+    private MainGraphicUIApp mainGUI;           // main JFrame that displays the panels
+    private JLabel information;                 // label that explains what each button does
+    private JButton saveButton;                 // button that saves when pressed
+    private JButton closeButton;                // button that closes SaveGUI when pressed
+    private JsonWriter jsonWriter;              // object that writes to file
+    private JLabel successSave;                 // label that indicates save was a success
+    private JLabel failedToSave;                // label that indicates save was a failure
 
+    // creates a panel for related functionality to saving to file
     public SaveGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         jsonWriter = mainGUI.getJsonWriter();
@@ -47,6 +49,8 @@ public class SaveGUI extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates close button and adds it to panel
     private void setUpCloseButton() {
         closeButton = new JButton("Close Save Menu");
         closeButton.setBounds(10, 110, 120, 25);
@@ -58,6 +62,8 @@ public class SaveGUI extends JPanel {
         add(closeButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates save button that saves when pressed and adds to panel
     private void setUpSave() {
         saveButton = new JButton("Save");
         saveButton.setBounds(10, 80, 120, 25);
@@ -69,6 +75,8 @@ public class SaveGUI extends JPanel {
         add(saveButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: saves progress to file if possible
     private void saveProgress() {
         try {
             jsonWriter.open();
