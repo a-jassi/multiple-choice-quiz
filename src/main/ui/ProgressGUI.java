@@ -92,7 +92,7 @@ public class ProgressGUI extends JPanel {
         mainGUI.setCurrentPanel(individualChoosePanel);
     }
 
-    // EFFECTS: sets up labels on individual attempted quiz choosing panel
+    // EFFECTS: sets up labels of all attempted quizzes to choose from
     private void setUpLabels(JPanel panel) {
         JLabel info = new JLabel("Here is a list of all attempted quizzes:");
         panel.add(info);

@@ -37,7 +37,7 @@ public class AttemptGUI extends JPanel implements ActionListener {
         setVisible(true);
     }
 
-    // EFFECTS: creates and adds labels to the panel
+    // EFFECTS: creates and adds labels representing the quizzes you can attempt to panel
     private void setUpLabels() {
         JLabel info = new JLabel("Here is a list of all quizzes:");
         add(info);

@@ -10,13 +10,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+// represents GUI for viewing a created quiz
 public class ViewGUI extends JPanel {
 
-    private MainGraphicUIApp mainGUI;
-    private JTextField inputQuizName;
-    private JButton viewButton;
-    private JLabel quizName;
+    private MainGraphicUIApp mainGUI;           // main JFrame that displays panels
+    private JTextField inputQuizName;           // text field for inputting quiz you want to view
+    private JButton viewButton;                 // button to confirm quiz you want to view
+    private JLabel quizName;                    // label that displays quiz name
 
+    // EFFECTS: creates a viewGUI panel that has functionality related to viewing made quizzes
     public ViewGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -26,6 +28,8 @@ public class ViewGUI extends JPanel {
         setUpEnterButton();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates labels for all made quizzes and adds them to panel
     private void setUpLabels() {
         JLabel info = new JLabel("Here is a list of all quizzes:");
         add(info);
@@ -41,12 +45,16 @@ public class ViewGUI extends JPanel {
         add(text);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates new text field for inputting the quiz to view
     private void setUpTextField() {
         inputQuizName = new JTextField();
         inputQuizName.setColumns(20);
         add(inputQuizName);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates enter button to confirm what quiz to go to and adds to panel
     private void setUpEnterButton() {
         viewButton = new JButton("Enter");
         viewButton.addActionListener(new ActionListener() {
@@ -57,6 +65,7 @@ public class ViewGUI extends JPanel {
         add(viewButton);
     }
 
+    // EFFECTS: gets quiz that is to be viewed
     private void chooseQuiz() {
         if (!inputQuizName.getText().equals("")) {
             QuizManager quizManager = mainGUI.getQuizManager();
@@ -66,6 +75,8 @@ public class ViewGUI extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates new panel for viewing all the questions added to a quiz
     private void viewQuiz(Quiz quiz) {
         JPanel viewPanel = new JPanel();
         viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.Y_AXIS));
