@@ -1,6 +1,5 @@
 package ui;
 
-import model.QuizManager;
 import persistence.JsonReader;
 
 import javax.swing.*;
@@ -12,16 +11,18 @@ import java.io.IOException;
 
 import static ui.MainGraphicUIApp.JSON_FILE_WRITTEN_TO;
 
+// represents the GUI for loading data from file
 public class LoadGUI extends JPanel {
 
-    private MainGraphicUIApp mainGUI;
-    private JsonReader jsonReader;
-    private JButton loadButton;
-    private JButton closeButton;
-    private JLabel successLoad;
-    private JLabel failLoad;
-    private JLabel information;
+    private MainGraphicUIApp mainGUI;       // JFrame that displays the panels
+    private JsonReader jsonReader;          // reader that reads from file
+    private JButton loadButton;             // button that executes read from file
+    private JButton closeButton;            // button that closes LoadGUI and returns to main screen
+    private JLabel successLoad;             // label that indicates load was successful
+    private JLabel failLoad;                // label that indicates load failed
+    private JLabel information;             // instructions on what to do in LoadGUI
 
+    // creates a LoadGUI panel for functionality related to loading data from file
     public LoadGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         jsonReader = mainGUI.getJsonReader();
@@ -49,6 +50,8 @@ public class LoadGUI extends JPanel {
         setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates close button and adds it to panel
     private void setUpCloseButton() {
         closeButton = new JButton("Close Load Menu");
         closeButton.setBounds(10, 110, 120, 25);
@@ -60,6 +63,8 @@ public class LoadGUI extends JPanel {
         add(closeButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates load button and adds it to the panel
     private void setUpLoad() {
         loadButton = new JButton("Load");
         loadButton.setBounds(10, 80, 120, 25);
@@ -71,6 +76,8 @@ public class LoadGUI extends JPanel {
         add(loadButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: tries to load data from file
     private void loadProgress() {
         try {
             mainGUI.setQuizManager(jsonReader.read());
