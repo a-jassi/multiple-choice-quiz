@@ -14,15 +14,16 @@ import java.util.List;
 // represents the GUI for attempting quizzes
 public class AttemptGUI extends JPanel implements ActionListener {
 
-    private MainGraphicUIApp mainGUI;
-    private JTextField inputQuizName;
-    private JButton enter;
-    private JLabel quizName;
+    private MainGraphicUIApp mainGUI;           // JFrame that displays panels
+    private JTextField inputQuizName;           // text field for quiz names
+    private JButton enter;                      // button to submit quiz name
+    private JLabel quizName;                    // name of quiz that is being attempted
 
-    private JTextField inputTextField;
-    private AttemptedQuiz attemptedQuiz;
-    private int index;
+    private JTextField inputTextField;          // answer field
+    private AttemptedQuiz attemptedQuiz;        // attempted quiz
+    private int index;                          // current question number
 
+    // EFFECTS: creates a new AttemptGUI panel for functionality related to attempting a quiz
     public AttemptGUI(MainGraphicUIApp mainGUI) {
         this.mainGUI = mainGUI;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -36,6 +37,7 @@ public class AttemptGUI extends JPanel implements ActionListener {
         setVisible(true);
     }
 
+    // EFFECTS: creates and adds labels to the panel
     private void setUpLabels() {
         JLabel info = new JLabel("Here is a list of all quizzes:");
         add(info);
@@ -51,11 +53,15 @@ public class AttemptGUI extends JPanel implements ActionListener {
         add(text);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes inputQuizName as a text field and adds it to the panel
     private void setUpTextField() {
         inputQuizName = new JTextField();
         add(inputQuizName);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes enter button and adds it to the panel
     private void setUpEnterButton() {
         enter = new JButton("Enter");
         enter.addActionListener(new ActionListener() {
@@ -66,6 +72,8 @@ public class AttemptGUI extends JPanel implements ActionListener {
         add(enter);
     }
 
+    // MODIFIES: this
+    // EFFECTS: finds the quiz that was inputted in inputQuizName
     private void chooseQuiz() {
         if (!inputQuizName.getText().equals("")) {
             QuizManager quizManager = mainGUI.getQuizManager();
@@ -79,6 +87,8 @@ public class AttemptGUI extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates new panel for inputting answers and attempting quizzes
     private void goIntoQuiz(AttemptedQuiz attemptedQuiz, int index) {
         JPanel attemptPanel = new JPanel();
         attemptPanel.setLayout(new BoxLayout(attemptPanel, BoxLayout.Y_AXIS));
@@ -103,6 +113,7 @@ public class AttemptGUI extends JPanel implements ActionListener {
         mainGUI.setCurrentPanel(attemptPanel);
     }
 
+    // EFFECTS: creates a new panel to display the statistics for attemptedQuiz
     private void displayProgressPanel(AttemptedQuiz attemptedQuiz) {
         JPanel progressPanel = new JPanel();
         progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
@@ -131,6 +142,7 @@ public class AttemptGUI extends JPanel implements ActionListener {
         mainGUI.setCurrentPanel(progressPanel);
     }
 
+    // EFFECTS: returns question of index "index" from quiz
     public Question getQuestionFromIndex(Quiz quiz, int index) {
         return quiz.getQuestions().get(index);
     }
