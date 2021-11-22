@@ -18,6 +18,7 @@ public class Question implements Writable {
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.possibleAnswers = possibleAnswers;
+        EventLog.getInstance().logEvent(new Event("Question: \"" + this.question + "\" was created"));
     }
 
     // EFFECTS: returns question

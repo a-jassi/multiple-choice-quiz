@@ -15,6 +15,8 @@ public class AttemptedQuiz implements Writable {
     public AttemptedQuiz(Quiz quiz) {
         this.quiz = quiz;
         this.grade = 0;
+        EventLog.getInstance().logEvent(new Event("Attempt for the quiz \"" + this.quiz.getName()
+                + "\" created"));
     }
 
     // EFFECTS: returns quiz

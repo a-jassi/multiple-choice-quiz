@@ -1,5 +1,6 @@
 package ui;
 
+import model.EventLog;
 import model.QuizManager;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -83,6 +84,8 @@ public class MainGraphicUIApp extends JFrame {
                 if (promptResult == JOptionPane.YES_OPTION) {
                     saveProgress();
                 }
+
+                EventLog.getInstance().iterator().forEachRemaining(System.out::println);
                 System.exit(0);
             }
         });

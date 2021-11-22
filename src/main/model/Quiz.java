@@ -18,6 +18,7 @@ public class Quiz implements Writable {
     public Quiz(String name) {
         this.name = name;
         this.questions = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event("Quiz \"" + this.name + "\" was created"));
     }
 
     // EFFECTS: returns name of quiz
@@ -34,6 +35,8 @@ public class Quiz implements Writable {
     // EFFECTS: adds a question to list of questions
     public void addQuestion(Question question) {
         questions.add(question);
+        EventLog.getInstance().logEvent(new Event("Question: \"" + question.getQuestion()
+                + "\" added to the quiz: " + name));
     }
 
     // EFFECTS: returns String representation of question i in quiz

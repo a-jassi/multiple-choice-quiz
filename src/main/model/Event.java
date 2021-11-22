@@ -7,7 +7,7 @@ import java.util.Date;
 // https://github.students.cs.ubc.ca/CPSC210/AlarmSystem/tree/master/src/main/ca/ubc/cpsc210/alarm/model
 
 /**
- * Represents an alarm system event.
+ * Represents a quiz event
  */
 public class Event {
     private static final int HASH_CONSTANT = 13;

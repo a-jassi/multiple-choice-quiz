@@ -30,3 +30,36 @@ The user stories so far are:
 - As a user, I want to be able to view a progress report on all attempted quizzes so far
 - As a user, I want to have the option to save all created and attempted quizzes and also get asked to save when quitting the application
 - As a user, I want to be able to load all created and attempted quizzes from file
+
+### Phase 4: Task 2
+
+Here is an example of the logs produced from running the application:
+
+Sun Nov 21 21:59:38 PST 2021  
+Quiz "Math Quiz" was created  
+Sun Nov 21 21:59:38 PST 2021  
+Question: "What is 1 + 1?" was created  
+Sun Nov 21 21:59:38 PST 2021  
+Question: "What is 1 + 1?" added to the quiz: Math Quiz  
+Sun Nov 21 21:59:50 PST 2021  
+Question: "What is 3 + 3?" was created  
+Sun Nov 21 21:59:50 PST 2021  
+Question: "What is 3 + 3?" added to the quiz: Math Quiz  
+Sun Nov 21 22:00:05 PST 2021  
+Question: "What is 9 + 9?" was created  
+Sun Nov 21 22:00:05 PST 2021  
+Question: "What is 9 + 9?" added to the quiz: Math Quiz  
+Sun Nov 21 22:00:53 PST 2021  
+Quiz "Capital City Quiz" was created  
+Sun Nov 21 22:00:53 PST 2021  
+Question: "What is the capital of Canada?" was created  
+Sun Nov 21 22:00:53 PST 2021  
+Question: "What is the capital of Canada?" added to the quiz: Capital City Quiz  
+Sun Nov 21 22:02:07 PST 2021  
+Question: "What is the capital of France?" was created  
+Sun Nov 21 22:02:07 PST 2021  
+Question: "What is the capital of France?" added to the quiz: Capital City Quiz  
+Sun Nov 21 22:02:36 PST 2021  
+Attempt for the quiz "Math Quiz" created  
+Sun Nov 21 22:03:11 PST 2021  
+Attempt for the quiz "Capital City Quiz" created  

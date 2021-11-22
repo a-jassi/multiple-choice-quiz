@@ -1,9 +1,6 @@
 package ui;
 
-import model.AttemptedQuiz;
-import model.Question;
-import model.Quiz;
-import model.QuizManager;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -57,6 +54,8 @@ public class MultipleChoiceQuizApp {
         }
 
         System.out.println("\nThanks for using the MultipleChoiceQuizApp!\nGoodbye!");
+        System.out.println("Event Logs: \n\n");
+        EventLog.getInstance().iterator().forEachRemaining(System.out::println);
     }
 
     // MODIFIES: this
