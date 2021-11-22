@@ -167,8 +167,4 @@ public class QuizManagerTest {
         assertEquals(100.0, quizManager.overallAttemptedPercentCorrect());
     }
 
-    @Test
-    void testToJson() {
-
-    }
 }
