@@ -1,132 +1,31 @@
 {
-    "attemptedQuizzes": [
-        {
-            "quiz": {
-                "name": "Math Quiz",
-                "questions": [
-                    {
-                        "question": "What is 1 + 1?",
-                        "correctAnswer": "2",
-                        "possibleAnswers": [
-                            "4",
-                            "2",
-                            "1",
-                            "5"
-                        ]
-                    },
-                    {
-                        "question": "What is 3 + 3?",
-                        "correctAnswer": "6",
-                        "possibleAnswers": [
-                            "8",
-                            "1",
-                            "7",
-                            "6"
-                        ]
-                    },
-                    {
-                        "question": "What is 9 + 9?",
-                        "correctAnswer": "18",
-                        "possibleAnswers": [
-                            "18",
-                            "17",
-                            "19",
-                            "4"
-                        ]
-                    }
+    "attemptedQuizzes": [{
+        "quiz": {
+            "name": "t",
+            "questions": [{
+                "question": "t",
+                "correctAnswer": "t",
+                "possibleAnswers": [
+                    "t",
+                    "t",
+                    "t",
+                    "t"
                 ]
-            },
-            "grade": 3
+            }]
         },
-        {
-            "quiz": {
-                "name": "Capital City Quiz",
-                "questions": [
-                    {
-                        "question": "What is the capital of Canada?",
-                        "correctAnswer": "Ottawa",
-                        "possibleAnswers": [
-                            "Montreal",
-                            "Toronto",
-                            "Ottawa",
-                            "Vancouver"
-                        ]
-                    },
-                    {
-                        "question": "What is the capital of France?",
-                        "correctAnswer": "Paris",
-                        "possibleAnswers": [
-                            "Moscow",
-                            "Paris",
-                            "London",
-                            "Tokyo"
-                        ]
-                    }
-                ]
-            },
-            "grade": 2
-        }
-    ],
-    "allQuizzesMade": [
-        {
-            "name": "Math Quiz",
-            "questions": [
-                {
-                    "question": "What is 1 + 1?",
-                    "correctAnswer": "2",
-                    "possibleAnswers": [
-                        "4",
-                        "2",
-                        "1",
-                        "5"
-                    ]
-                },
-                {
-                    "question": "What is 3 + 3?",
-                    "correctAnswer": "6",
-                    "possibleAnswers": [
-                        "8",
-                        "1",
-                        "7",
-                        "6"
-                    ]
-                },
-                {
-                    "question": "What is 9 + 9?",
-                    "correctAnswer": "18",
-                    "possibleAnswers": [
-                        "18",
-                        "17",
-                        "19",
-                        "4"
-                    ]
-                }
+        "grade": 1
+    }],
+    "allQuizzesMade": [{
+        "name": "t",
+        "questions": [{
+            "question": "t",
+            "correctAnswer": "t",
+            "possibleAnswers": [
+                "t",
+                "t",
+                "t",
+                "t"
             ]
-        },
-        {
-            "name": "Capital City Quiz",
-            "questions": [
-                {
-                    "question": "What is the capital of Canada?",
-                    "correctAnswer": "Ottawa",
-                    "possibleAnswers": [
-                        "Montreal",
-                        "Toronto",
-                        "Ottawa",
-                        "Vancouver"
-                    ]
-                },
-                {
-                    "question": "What is the capital of France?",
-                    "correctAnswer": "Paris",
-                    "possibleAnswers": [
-                        "Moscow",
-                        "Paris",
-                        "London",
-                        "Tokyo"
-                    ]
-                }
-            ]
-        }
-    ]
+        }]
+    }]
 }

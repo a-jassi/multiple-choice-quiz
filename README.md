@@ -66,3 +66,25 @@ Attempt for the quiz "Capital City Quiz" created
 
 ### Phase 4: Task 3
 
+One of the things that I would refactor is the association between JsonReader, JsonWriter, LoadGUI, SaveGUI,
+and MainGraphicUIApp. MainGraphicUIApp has an association to JsonReader and JsonWriter so the LoadGUI and SaveGUI also 
+having that association is redundant
+
+To fix this:  
+- Remove field of JsonWriter and JsonReader
+- Make all calls to JsonReader and JsonWriter from LoadGUI and SaveGUI from the MainGraphicUIApp associations by 
+using a getter method
+
+Another thing that might be able to be refactored is having both AttemptedQuizzes and a Quiz. I don't think it's the 
+best design since the quizManager has to keep track of two lists instead of just one which resulted in some methods that
+were extremely similar to deal with the lists differently. Therefore, it could be changed to 
+one generic quiz class that has the functionality of attempting inside it, and it keeps track of all the attempted scores
+too. Therefore, I would:
+
+- combine both AttemptedQuiz and Quiz into one class
+- Maybe set up a HashMap field to store grades for each attempt
+- refactor QuizManager to only have to handle one list
+- change GUI classes to handle the new quiz class
+
+This approach would result in only having to worry about one list in QuizManager and makes the overall project design 
+better since some arguably unnecessary classes are replaced with one class that only deals with one thing.
